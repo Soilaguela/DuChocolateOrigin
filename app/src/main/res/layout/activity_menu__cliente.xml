@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Menu_Cliente">
+    <ImageView
+        android:id="@+id/id_imagem1"
+        android:layout_width="match_parent"
+        android:layout_height="91dp"
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/id_menuvendas"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="1dp"
+        android:text="@string/menu_das_vendas"
+        android:textColor="#fff"
+        />
+
+    <Button
+        android:id="@+id/bt_inserir"
+        android:text="@string/inserir"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttonstyleith1"
+        android:onClick="InserirClientes"
+        android:textColor="#E6B0AA"
+
+        />
+
+    <Button
+        android:id="@+id/bt_alterar"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttonstyleith1"
+        android:text="@string/alterar"
+        android:textColor="#E6B0AA"
+        />
+
+    <Button
+        android:id="@+id/bt_eleminar"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttonstyleith1"
+        android:onClick="EleminarClientes"
+        android:text="@string/eleminar"
+        android:textColor="#E6B0AA"
+        />
+
+</LinearLayout>

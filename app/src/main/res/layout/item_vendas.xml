@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textViewDescricaoProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Pedro Carlos"
+       />
+
+    <TextView
+        android:id="@+id/textViewcLIENTE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Pedro Carlos"
+       />
+
+    <TextView
+        android:id="@+id/textViewDAta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="01/12/2016"
+       />
+
+    <TextView
+        android:id="@+id/textViewProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDescricaoProduto"
+        app:layout_constraintStart_toStartOf="@+id/textViewDescricaoProduto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescricaoProduto"
+        tools:text="Pedro Carlos"
+        />
+</LinearLayout>

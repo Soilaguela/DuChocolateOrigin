@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".AlterarVendas">
+    <EditText
+        android:id="@+id/id_descProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/DescriçaoProduto"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/id_ClienteNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/AlterarNomeCliente"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        tools:targetApi="o" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/idData"
+        android:hint="@string/dataV"
+        android:importantForAccessibility="no"
+        android:inputType="date"
+        android:autofillHints="" tools:targetApi="o"/>
+
+    <Button
+        android:id="@+id/id_guardar"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonstyleith"
+        android:textColor="#fff"
+        android:layout_marginTop="16dp"
+        android:onClick="Alterarvendas"
+        android:text="@string/guardaAlterar" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonstyleith"
+        android:textColor="#fff"
+        android:onClick="canselarAlteracao"
+        android:layout_marginTop="16dp"
+        android:text="@string/CancelarAleracao" />
+
+
+</LinearLayout>

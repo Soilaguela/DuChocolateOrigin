@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_main">
+
+
+    <RelativeLayout
+        android:id="@+id/id_RL"
+        android:layout_width="match_parent"
+        android:layout_height="152dp"
+        android:background="@drawable/gradientbackground">
+
+
+        <ImageView
+            android:id="@+id/id_imagem"
+            android:layout_width="146dp"
+            android:layout_height="112dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="133dp"
+            android:layout_marginLeft="133dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="133dp"
+            android:layout_marginRight="133dp"
+            android:layout_marginBottom="68dp"
+            android:contentDescription="@string/todo"
+            app:srcCompat="@drawable/ic_launcher_foreground"
+            tools:ignore="VectorDrawableCompat" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/bt_vendas"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttonstyleith"
+        android:onClick="Vendas"
+        android:text="@string/vendas"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/bt_produtos"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/buttonstyleith"
+        android:onClick="Produtos"
+        android:text="@string/produtos"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/bt_gastos"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="74dp"
+        android:background="@drawable/buttonstyleith"
+        android:onClick="Gastos"
+        android:text="@string/gastos"
+        android:textColor="#fff" />
+
+</LinearLayout>

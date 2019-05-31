@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".EleminarCliente">
+    <EditText
+        android:id="@+id/ID_NCVE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nomeclienteD"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/nomeclienteD"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/ID_EMPE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nomeempresa"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/ID_PREÇOE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/preço"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        tools:targetApi="o" />
+
+
+    <EditText
+        android:id="@+id/ID_TELEFE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Telefone"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/ID_DATAE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/dataD"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/ID_EMAILE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        tools:targetApi="o" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/buttonstyleith"
+        android:text="@string/EleminarDetalhedV"
+        android:onClick="EleminarDetalhesVenda"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/buttonstyleith"
+        android:text="@string/ECancelarDetalhedV"
+        android:onClick="cancelarEleminarDetalhesVenda"
+        android:textColor="#fff" />
+
+</LinearLayout>

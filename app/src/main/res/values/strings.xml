@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">DuChocolate</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="R_layout">hint</string>
+    <string name="muno_principal">Muno Principal</string>
+    <string name="vendas">Vendas</string>
+    <string name="produtos">Produtos</string>
+    <string name="gastos">Cliente</string>
+    <string name="todo1">TODO</string>
+    <string name="inserir">Inserir</string>
+    <string name="alterar">Alterar</string>
+    <string name="eleminar">Eleminar</string>
+    <string name="todo">TODO</string>
+    <string name="menu_das_vendas">Menu </string>
+    <string name="produtos_vendidos">Descrição do Produto</string>
+    <string name="nome_do_cliente">Nome do Cliente</string>
+    <string name="data">Data</string>
+    <string name="valor">Valor</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="GuardadoSucesso">Dados Guardado com sucesso!!</string>
+    <string name="erro_ID_prodotosvendidos">Campos Obrigatórios!!</string>
+    <string name="erro_0">Insira número maior que Zero(0)</string>
+
+    <string name="DescriçaoProduto">Descrição do Produto</string>
+    <string name="AlterarNomeCliente">Nome de Cliente</string>
+    <string name="nomecliente">Nome do Cliente</string>
+    <string name="guardaAlterar">Alterar</string>
+    <string name="CancelarAleracao">Cancelar</string>
+
+    <string name="DescricaoP">Descrição do Produto</string>
+    <string name="nomeclienteE">Nome do Cliente</string>
+    <string name="eleminarVendar">Eleminar</string>
+    <string name="cancelarEle">Cancelar</string>
+
+    <string name="guardarProdutos">Guardar</string>
+    <string name="CencelarinserP">Cancelar</string>
+    <string name="NomeProduto">Descrição do Produto</string>
+    <string name="quantidadeestoq">Quantidade em Estoque</string>
+
+    <string name="EleminarDProdutos">Descriçaõ do Produto</string>
+    <string name="EleminarQuantidadeemE">Quantidade em Estoce</string>
+    <string name="AlterarP">Alterar</string>
+    <string name="EleminarP">Eleminar</string>
+    <string name="CancelarP">Cancelar</string>
+    <string name="inserpsungM">Inserir</string>
+
+    <string name="EleminarSucesso">Dados eleminados com sucesso!!</string>
+    <string name="AlterarSucesso">Dados alterados com sucesso!!</string>
+    <string name="nomeclienteD">Nome do Cliente</string>
+    <string name="nomeempresa">Nome da Empresa</string>
+    <string name="preço">Preço</string>
+    <string name="dataD">Data</string>
+    <string name="email">Email</string>
+    <string name="inserirDvenda">Guardar</string>
+    <string name="canceladvenda">Cancelar</string>
+    <string name="Telefone">Telefone</string>
+
+    <string name="EleminarDetalhedV">Eleminar</string>
+    <string name="ECancelarDetalhedV">Cancelar</string>
+    <string name="datavenda">Data</string>
+    <string name="dataV">Data</string>
+</resources>

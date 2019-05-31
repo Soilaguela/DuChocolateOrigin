@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InserirProdutos">
+    <EditText
+        android:id="@+id/ID_NP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/NomeProduto"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/ID_QuantE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/quantidadeestoq"
+        android:inputType="number"
+        android:autofillHints="" tools:targetApi="o"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:onClick="GuardarProdutos"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonstyleith"
+        android:textColor="#fff"
+        android:layout_marginTop="16dp"
+        android:text="@string/guardarProdutos" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:onClick="cancelarProduto"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonstyleith"
+        android:textColor="#fff"
+        android:layout_marginTop="16dp"
+        android:text="@string/CencelarinserP" />
+
+</LinearLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".InserirVendas">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/id_guardar"
+                            android:layout_width="291dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:onClick="GuardarVendas"
+                            android:background="@drawable/buttonstyleith"
+                            android:text="@string/guardar"
+                            android:textColor="#fff" />
+
+                        <Button
+                            android:id="@+id/id_cancelar"
+                            android:layout_width="291dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:onClick="canselar"
+                            android:background="@drawable/buttonstyleith"
+                            android:text="@string/cancelar"
+                            android:textColor="#fff" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/ID_nomecliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nome_do_cliente"
+                    android:inputType="none" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/ID_produtosvendidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/produtos_vendidos"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/ID_datavenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/datavenda"
+            android:inputType="date" />
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".EleminarVendas">
+    <EditText
+        android:id="@+id/ID_DP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nomecliente"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/DescricaoP"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/ID_NC"
+        android:layout_width="748dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/guardaAlterar"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:text="@string/nomeclienteE"
+        tools:targetApi="o" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:onClick="EleminarVendas"
+        android:background="@drawable/buttonstyleith"
+        android:text="@string/eleminarVendar"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/buttonstyleith"
+        android:textColor="#fff"
+        android:onClick="cancelarEleninar"
+        android:layout_marginTop="16dp"
+        android:text="@string/cancelarEle" />
+
+
+</LinearLayout>
