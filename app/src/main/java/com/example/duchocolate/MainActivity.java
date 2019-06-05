@@ -58,6 +58,15 @@ public class MainActivity extends AppCompatActivity  {
             Toast.makeText(MainActivity.this,"Clicou em Settings", Toast.LENGTH_LONG).show();
 
             return true;
+        }else if (id == R.id.action_inserir) {
+            Toast.makeText(this, "Inserir", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.action_alterar) {
+            Toast.makeText(this, "Alterar", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.action_eliminar) {
+            Toast.makeText(this, "Eliminar", Toast.LENGTH_SHORT).show();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

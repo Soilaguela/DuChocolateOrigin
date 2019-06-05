@@ -61,4 +61,11 @@
     <string name="ECancelarDetalhedV">Cancelar</string>
     <string name="datavenda">Data</string>
     <string name="dataV">Data</string>
+    <string name="eliminar">eliminar</string>
+
+    <string name="preecha_data">Preencha a data</string>
+    <string name="erro_guardar_livro">Erro: Não foi possível guardar o livro</string>
+    <string name="livro_guardado_sucesso">Livro guardado com suceeso</string>
+
+
 </resources>

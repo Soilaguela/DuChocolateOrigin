@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.CursorAdapter;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,8 @@ public class MainVendas extends AppCompatActivity implements LoaderManager.Loade
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_CLIENTES,null, this);
         super.onResume();
     }
+
+
 
     /**
      * Instantiate and return a new Loader for the given ID.
@@ -103,10 +106,11 @@ public class MainVendas extends AppCompatActivity implements LoaderManager.Loade
      */
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        FloatingActionButton fab = findViewById(R.id.fab);
+        /*FloatingActionButton fab = findViewById(R.id.fab);
 
         Snackbar.make(fab, "Vendas existentes: " + data.getCount(), Snackbar.LENGTH_INDEFINITE).show();
-
+*/
+        adaptadorVendas.setCursor(data);
     }
     /**
      * Called when a previously created loader is being reset, and thus

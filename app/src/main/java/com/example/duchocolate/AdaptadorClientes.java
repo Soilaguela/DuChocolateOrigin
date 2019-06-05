@@ -93,18 +93,42 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
         if (cursor ==null) return 0;
         return cursor.getCount ();
     }
+  private static  ViewHolderClientes viewHolderClientesSelecionado= null;
 
     public class ViewHolderClientes extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView textViewN;
-        private TextView textViewCategoria;
-        private TextView textViewPagina;
+        private TextView textViewNomeCliente;
+        private TextView textViewPreço;
+        private TextView textViewTelefone;
+        private TextView textViewdata;
+        private TextView textViewEmail;
+        private TextView textViewEmpresa;
+        private TextView textViewvendas;
 
         private  Cliente cliente;
 
-        public ViewHolderClientes(@NonNull View itemView) { super(itemView); }
+        public ViewHolderClientes(@NonNull View itemView) {
+            super(itemView);
+            textViewNomeCliente = (TextView)itemView.findViewById(R.id.textViewNomeCliente);
+            textViewPreço =  (TextView)itemView.findViewById(R.id.textViewPreço);
+            textViewTelefone =  (TextView)itemView.findViewById(R.id.textViewTelefone);
+            textViewdata = (TextView)itemView.findViewById(R.id.textViewdata);
+            textViewEmail =  (TextView)itemView.findViewById(R.id.textViewEmail);
+            textViewvendas =  (TextView)itemView.findViewById(R.id.textViewvendas);
+            textViewEmpresa =  (TextView)itemView.findViewById(R.id.textViewEmpresa);
+
+            itemView.setOnClickListener(this);
+        }
 
         public void setCliente(Cliente cliente){
             this.cliente= cliente;
+            textViewNomeCliente.setText(cliente.getNomeCliente());
+            textViewPreço.setText(cliente.getPreço());
+            textViewTelefone.setText(cliente.getTelefone());
+            textViewdata.setText(String.valueOf(cliente.getData()));
+            textViewEmail.setText(String.valueOf(cliente.getEmail()));
+            textViewvendas.setText((int) cliente.getVendas());
+            textViewEmpresa.setText(String.valueOf(cliente.getEmpresa()));
+
         }
 
         /**
@@ -114,7 +138,21 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
          */
         @Override
         public void onClick(View v) {
+            if (viewHolderClientesSelecionado != null) {
+                viewHolderClientesSelecionado.DesSeleciona();
+            }
 
+            viewHolderClientesSelecionado = this;
+            Seleciona();
+
+        }
+
+        private void DesSeleciona() {
+            itemView.setBackgroundResource(android.R.color.white);
+        }
+
+        private void Seleciona() {
+            itemView.setBackgroundResource(R.color.graylight);
         }
     }
 }
