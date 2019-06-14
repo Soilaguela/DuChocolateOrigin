@@ -2,9 +2,11 @@ package com.example.duchocolate;
 
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CursorAdapter;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainVendas extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int ID_CURSO_LOADER_CLIENTES = 0;
+    public  static  String ID_VENDAS="ID_VENDAS";
+
     private RecyclerView recyclerViewVendas;
     private AdaptadorVendas adaptadorVendas;
 
@@ -39,7 +43,61 @@ public class MainVendas extends AppCompatActivity implements LoaderManager.Loade
     protected void onResume(){
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_CLIENTES,null, this);
         super.onResume();
+
     }
+    private Menu menu;
+
+    public void atualizaOpcoesMenu() {
+        Vendas vendas = adaptadorVendas.getLivroSelecionado();
+
+        boolean mostraAlterarEliminar = (vendas != null);
+
+        menu.findItem(R.id.action_alterar).setVisible(mostraAlterarEliminar);
+        menu.findItem(R.id.action_eliminar).setVisible(mostraAlterarEliminar);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        this.menu = menu;
+
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.action_inserir) {
+            Intent i = new Intent(this, InserirVendas.class);
+            startActivity(i);
+
+            return true;
+        } else if (id == R.id.action_alterar) {
+            Intent i = new Intent(this, AlterarVendas.class);
+            i.putExtra(ID_VENDAS, adaptadorVendas.getLivroSelecionado().getId());
+
+            startActivity(i);
+
+            return true;
+        } else if (id == R.id.action_eliminar) {
+            Intent intent = new Intent(this, EleminarVendas.class);
+            intent.putExtra(ID_VENDAS, adaptadorVendas.getLivroSelecionado().getId());
+
+            startActivity(intent);
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
 

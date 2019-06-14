@@ -126,7 +126,7 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
             textViewTelefone.setText(cliente.getTelefone());
             textViewdata.setText(String.valueOf(cliente.getData()));
             textViewEmail.setText(String.valueOf(cliente.getEmail()));
-            textViewvendas.setText((int) cliente.getVendas());
+            textViewvendas.setText((int) cliente.getProdutos());
             textViewEmpresa.setText(String.valueOf(cliente.getEmpresa()));
 
         }
@@ -152,7 +152,7 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
         }
 
         private void Seleciona() {
-            itemView.setBackgroundResource(R.color.graylight);
+            itemView.setBackgroundResource(R.color.endcastanho);
         }
     }
 }

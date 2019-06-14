@@ -97,6 +97,11 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
         return cursor.getCount ();
     }
 
+    public Vendas getLivroSelecionado() {
+        if (viewHolderVendaelecionado == null) return null;
+        return viewHolderVendaelecionado.vendas;
+    }
+
     public class ViewHolderVenda extends  RecyclerView.ViewHolder implements  View.OnClickListener {
         private TextView textViewcLIENTE;
         private TextView textViewDAta;
@@ -143,7 +148,7 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
           itemView.setBackgroundResource(android.R.color.white);
         }
         private void Seleciona(){
-            itemView.setBackgroundResource(R.color.graylight);
+            itemView.setBackgroundResource(R.color.endcastanho);
         }
     }
 

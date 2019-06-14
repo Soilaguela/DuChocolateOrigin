@@ -132,7 +132,7 @@ public class AdaptadorProdutos extends RecyclerView.Adapter<AdaptadorProdutos.Vi
             itemView.setBackgroundResource(android.R.color.white);
         }
 
-        private void Seleciona() { itemView.setBackgroundResource(R.color.graylight);}
+        private void Seleciona() { itemView.setBackgroundResource(R.color.endcastanho);}
     }
     private static ViewHolderProduto viewHolderprodutoSelecionado=null;
 }

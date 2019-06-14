@@ -11,7 +11,7 @@ public class Cliente {
     private int Telefone;
     private String data;
     private String Email;
-    private long vendas;
+    private long produtos;
 
     public String getData() {
         return data;
@@ -75,12 +75,12 @@ public class Cliente {
 
 
 
-    public long getVendas() {
-        return vendas;
+    public long getProdutos() {
+        return produtos;
     }
 
-    public void setVendas(long vendas) {
-        this.vendas = vendas;
+    public void setProdutos(long produtos) {
+        this.produtos = produtos;
     }
 
     public ContentValues getContentValues() {
@@ -92,7 +92,7 @@ public class Cliente {
         valores.put(BDCliente.CAMPO_TELEFONE, Telefone);
         valores.put(BDCliente.CAMPO_EMAIL, Email);
         valores.put(BDCliente.CAMPO_DATA, data);
-        valores.put(BDCliente.CAMPO_VENDAS, vendas);
+        valores.put(BDCliente.CAMPO_PRODUTO, produtos);
 
 
         return valores;
@@ -124,8 +124,8 @@ public class Cliente {
         int Telefone = cursor.getInt(
                 cursor.getColumnIndex(BDCliente.CAMPO_TELEFONE)
         );
-        long vendas = cursor.getLong(
-                cursor.getColumnIndex(BDCliente.CAMPO_VENDAS)
+        long produtos = cursor.getLong(
+                cursor.getColumnIndex(BDCliente.CAMPO_PRODUTO)
         );
 
 
@@ -140,7 +140,7 @@ public class Cliente {
         cliente.setTelefone(Telefone);
         cliente.setEmail(Email);
         cliente.setData(data);
-        cliente.setVendas(vendas);
+        cliente.setProdutos(produtos);
 
         return cliente;
     }

@@ -22,10 +22,10 @@ public class Menu_Cliente extends AppCompatActivity {
     }
 
 
-   /* public void AlterarProdutos (View v){
-        Intent i =  new Intent( this,AlterarProdutos.class );
+    public void AlterarClientes (View v){
+        Intent i =  new Intent( this,AlterarCliente.class );
         startActivity(i);
-    }*/
+    }
 
     public void EleminarClientes (View v){
         Intent i =  new Intent( this,EleminarCliente.class );

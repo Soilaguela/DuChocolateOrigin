@@ -6,25 +6,55 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".EleminarVendas">
-    <EditText
+
+    <TextView
         android:id="@+id/ID_DP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/nomecliente"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
         android:text="@string/DescricaoP"
         tools:targetApi="o" />
 
-    <EditText
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+
+    <TextView
         android:id="@+id/ID_NC"
         android:layout_width="748dp"
         android:layout_height="wrap_content"
         android:hint="@string/guardaAlterar"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
         android:text="@string/nomeclienteE"
         tools:targetApi="o" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+
+    <TextView
+        android:id="@+id/DATA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dataV" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <TextView
+        android:id="@+id/produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/detalhe_venda"
+        />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
 
     <Button
         android:id="@+id/button"

@@ -95,8 +95,73 @@ public class ExampleInstrumentedTest {
         tabelaProduto.delete(BDProduto._ID+"=?",new String[]{String.valueOf(id)});
         cursorProduto = getProduto(tabelaProduto);
         assertEquals(2,cursorProduto.getCount());
-
         getProdutoComID(cursorProduto,id);
+
+
+        // Teste create/read Cliente (CRud)////////
+        BDCliente tabelaCliente = new BDCliente(db);
+        Cursor cursorCliente = getClientes(tabelaCliente);
+        assertEquals(0,cursorCliente.getCount());
+
+        String NomeCliente="Carla";
+        String Empresa ="SUL";
+        int Preço =455;
+        int Telefone=956789678;
+        String Email="carla@gmail.com";
+        String data="2/5/2019";
+
+
+        long idcliente =criaCliente(tabelaCliente,NomeCliente,Preço,Telefone,Email,data,Empresa,idSeco);
+        cursorCliente = getClientes(tabelaCliente);
+        assertEquals(1,cursorCliente.getCount());
+
+
+
+        Cliente cliente= getClientesComID(cursorCliente,idcliente);
+        assertEquals(NomeCliente,cliente.getNomeCliente());
+        assertEquals(Empresa, cliente.getEmpresa());
+        assertEquals(Telefone,cliente.getTelefone());
+        assertEquals(Preço, cliente.getPreço());
+        assertEquals(Email, cliente.getEmail());
+        assertEquals(data, cliente.getData());
+        assertEquals(idSeco, cliente.getProdutos());
+
+        id = criaCliente(tabelaCliente,"Carlos",23,345678444,"fr@gmail.com", "5/7/2019","JHT",idSeco);
+        cursorCliente=getClientes(tabelaCliente);
+        assertEquals(2,cursorCliente.getCount());
+
+        // Teste read/update c (cRUd)
+        cliente= getClientesComID(cursorCliente, id);
+        NomeCliente="Tereza";
+        Empresa="CULT";
+        Preço=79;
+        Telefone=956678443;
+        Email="trz@gmail.com";
+        data="2/7/2019";
+
+        cliente.setNomeCliente(NomeCliente);
+        cliente.setEmail(Email);
+        cliente.setEmpresa(Empresa);
+        cliente.setTelefone(Telefone);
+        cliente.setPreço(Preço);
+        cliente.setData(data);
+
+        tabelaCliente.update(cliente.getContentValues(),BDCliente._ID+"=?",new String[]{String.valueOf(id)});
+        cursorCliente=getClientes(tabelaCliente);
+        cliente= getClientesComID(cursorCliente,id);
+        assertEquals(NomeCliente,cliente.getNomeCliente());
+        assertEquals(Empresa, cliente.getEmpresa());
+        assertEquals(Preço, cliente.getPreço());
+        assertEquals(Telefone,cliente.getTelefone());
+        assertEquals(Email, cliente.getEmail());
+        assertEquals(data, cliente.getData());
+        assertEquals(idSeco, cliente.getProdutos());
+
+        // Teste read/delete clientes (cRuD)
+        tabelaCliente.delete(BDCliente._ID+"=?", new String[]{String.valueOf(id)});
+        cursorCliente= getClientes(tabelaCliente);
+        assertEquals(1,cursorCliente.getCount());
+
 
 
         /////////////////////Vendas/////////////////
@@ -110,7 +175,7 @@ public class ExampleInstrumentedTest {
         String Nomecliente = "Carlos Fernandes";
         String Data = "3/4/2017";
 
-        long idvenda = criaVendas(tabelaVendas, DescricaoProdutoV ,Nomecliente,Data, idSeco);
+        long idvenda = criaVendas(tabelaVendas, DescricaoProdutoV ,Nomecliente,Data, idcliente);
         cursorVendas= getVenda(tabelaVendas);
         assertEquals(1,cursorVendas.getCount());
 
@@ -120,9 +185,9 @@ public class ExampleInstrumentedTest {
         assertEquals(DescricaoProdutoV,vendas.getDescricaoProdutoV());
         assertEquals(Nomecliente,vendas.getNomecliente());
         assertEquals(Data,vendas.getData());
-        assertEquals(idSeco, vendas.getProdutos());
+        assertEquals(idcliente, vendas.getCliente());
 
-        id  =criaVendas(tabelaVendas,"seco","Carlos","7/7/2016",idSeco);
+        idvenda  =criaVendas(tabelaVendas,"seco","Carlos","7/7/2016",id);
         cursorVendas= getVenda(tabelaVendas);
         assertEquals(2,cursorVendas.getCount());
         // Teste read/update vendas (cRUd)
@@ -134,7 +199,7 @@ public class ExampleInstrumentedTest {
         vendas.setDescricaoProdutoV(DescricaoProdutoV);
         vendas.setNomecliente(Nomecliente);
         vendas.setData(Data);
-        vendas.setProdutos(idSeco);
+        vendas.setCliente(idcliente);
 
         tabelaVendas.update(vendas.getContentValues(),BDVendas._ID+"=?", new String[]{String.valueOf(idvenda)});
 
@@ -143,79 +208,12 @@ public class ExampleInstrumentedTest {
         assertEquals(DescricaoProdutoV,vendas.getDescricaoProdutoV());
         assertEquals(Nomecliente, vendas.getNomecliente());
         assertEquals(Data, vendas.getData());
-        assertEquals(idSeco, vendas.getProdutos());
+        assertEquals(idcliente, vendas.getCliente());
+
         // Teste read/delete  (cRuD)
         tabelaVendas.delete(BDVendas._ID+"=?", new String[]{String.valueOf(id)});
         cursorVendas= getVenda(tabelaVendas);
-        assertEquals(1,cursorVendas.getCount());
-
-        // Teste create/read Cliente (CRud)
-        BDCliente tabelaCliente = new BDCliente(db);
-        Cursor cursorCliente = getClientes(tabelaCliente);
-        assertEquals(0,cursorCliente.getCount());
-
-        String NomeCliente="Carla";
-        String Empresa ="SUL";
-        int Preço =455;
-        int Telefone=956789678;
-        String Email="carla@gmail.com";
-        String data="2/5/2019";
-
-
-        id =criaCliente(tabelaCliente,NomeCliente,Preço,Telefone,Email,data,Empresa,idvenda);
-        cursorCliente = getClientes(tabelaCliente);
-        assertEquals(1,cursorCliente.getCount());
-
-
-
-
-
-        Cliente cliente= getClientesComID(cursorCliente,id);
-        assertEquals(NomeCliente,cliente.getNomeCliente());
-        assertEquals(Empresa, cliente.getEmpresa());
-        assertEquals(Telefone,cliente.getTelefone());
-        assertEquals(Preço, cliente.getPreço());
-        assertEquals(Email, cliente.getEmail());
-        assertEquals(data, cliente.getData());
-        assertEquals(idvenda, cliente.getVendas());
-
-        id= criaCliente(tabelaCliente,"Carlos",23,345678444,"fr@gmail.com", "5/7/2019","JHT",idvenda);
-        cursorCliente=getClientes(tabelaCliente);
-        assertEquals(2,cursorCliente.getCount());
-
-        // Teste read/update c (cRUd)
-        cliente= getClientesComID(cursorCliente, id);
-        NomeCliente="Tereza";
-        Empresa="CULT";
-        Preço=79;
-        Telefone=956678443;
-        Email="trz@gmail.com";
-        data="2/7/2019";
-        cliente.setNomeCliente(NomeCliente);
-        cliente.setEmail(Email);
-        cliente.setEmpresa(Empresa);
-        cliente.setTelefone(Telefone);
-        cliente.setPreço(Preço);
-        cliente.setData(Data);
-
-        tabelaCliente.update(cliente.getContentValues(),BDCliente._ID+"=?",new String[]{String.valueOf(id)});
-        cursorCliente=getClientes(tabelaCliente);
-        cliente= getClientesComID(cursorCliente,id);
-        assertEquals(NomeCliente,cliente.getNomeCliente());
-        assertEquals(Empresa, cliente.getEmpresa());
-        assertEquals(Preço, cliente.getPreço());
-        assertEquals(Telefone,cliente.getTelefone());
-        assertEquals(Email, cliente.getEmail());
-        assertEquals(data, cliente.getData());
-        assertEquals(idvenda, cliente.getVendas());
-
-
-        // Teste read/delete clientes (cRuD)
-        tabelaCliente.delete(BDCliente._ID+"=?", new String[]{String.valueOf(id)});
-        cursorCliente= getClientes(tabelaCliente);
-        assertEquals(1,cursorCliente.getCount());
-
-
+        assertEquals(2,cursorVendas.getCount());
 
     }
 
@@ -232,7 +230,7 @@ public class ExampleInstrumentedTest {
         return cliente;
     }
 
-    private long criaCliente(BDCliente tabelaCliente, String nomeCliente, int preço, int telefone, String email, String data, String empresa, long vendas) {
+    private long criaCliente(BDCliente tabelaCliente, String nomeCliente, int preço, int telefone, String email, String data, String empresa, long produtos) {
         Cliente cliente = new Cliente();
 
         cliente.setNomeCliente(nomeCliente);
@@ -241,7 +239,7 @@ public class ExampleInstrumentedTest {
         cliente.setTelefone(telefone);
         cliente.setEmail(email);
         cliente.setData(data);
-        cliente.setVendas(vendas);
+        cliente.setProdutos(produtos);
 
         long id = tabelaCliente.insert(cliente.getContentValues());
         // Log.d("CREATION","Id "+id);
@@ -268,12 +266,12 @@ public class ExampleInstrumentedTest {
     }
 
 
-    private long criaVendas(BDVendas tabelaVendas, String DescricaoProdutoV, String Nomecliente, String Data, long produtos) {
+    private long criaVendas(BDVendas tabelaVendas, String DescricaoProdutoV, String Nomecliente, String Data, long cliente) {
         Vendas vendas = new Vendas();
 
         vendas.setDescricaoProdutoV(DescricaoProdutoV);
         vendas.setNomecliente(Nomecliente);
-        vendas. setProdutos(produtos);
+        vendas.setCliente(cliente);
         vendas.setData(Data);
 
         long id =tabelaVendas.insert(vendas.getContentValues());

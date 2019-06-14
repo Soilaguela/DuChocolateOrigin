@@ -31,6 +31,10 @@
         android:importantForAccessibility="no"
         android:inputType="date"
         android:autofillHints="" tools:targetApi="o"/>
+    <Spinner
+        android:id="@+id/spinnerCliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/id_guardar"
@@ -42,6 +46,7 @@
         android:layout_marginTop="16dp"
         android:onClick="Alterarvendas"
         android:text="@string/guardaAlterar" />
+
 
     <Button
         android:id="@+id/button2"

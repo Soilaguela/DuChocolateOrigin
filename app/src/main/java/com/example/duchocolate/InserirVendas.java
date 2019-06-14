@@ -17,38 +17,37 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
 public class InserirVendas extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final int ID_CURSO_LOADER_PRODUTOS = 0;
+    private static final int ID_CURSO_LOADER_CLIENTES = 0;
 
     private EditText ID_nomecliente;
-    private EditText ID_produtosvendidos;
+    private Spinner spinnerCliente;
     private  EditText ID_datavenda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_vendas);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       // getSupportActionBar().setDisplayHomeAsUpEnabled();
 
 
-        getSupportLoaderManager().initLoader(ID_CURSO_LOADER_PRODUTOS, null, this);
+        getSupportLoaderManager().initLoader(ID_CURSO_LOADER_CLIENTES, null, this);
 
         ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);
-        ID_produtosvendidos = (EditText) findViewById(R.id.ID_produtosvendidos);
+        spinnerCliente = (Spinner) findViewById(R.id.spinnerCliente);
         ID_datavenda = (EditText) findViewById(R.id.ID_datavenda);
 
     }
 
     @Override
     protected void onResume() {
-        getSupportLoaderManager().restartLoader(ID_CURSO_LOADER_PRODUTOS, null, this);
+       // getSupportLoaderManager().restartLoader(ID_CURSO_LOADER_CLIENTES, null, this);
 
         super.onResume();
     }
@@ -80,12 +79,8 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void canselar (View v){
-        finish();
-    }
-
-    public void GuardarVendas (){//Inserir e as suas validaçes
+    ////////Para os Menus ////////////////////////////////////////////
+    private void GuardarVendas() {
         EditText ID_prodotosvendidos = (EditText) findViewById(R.id.ID_produtosvendidos);//Numero de produtos
         String dt = ID_prodotosvendidos.getText().toString();
         if (dt.trim().length() == 0) {//nome cliente
@@ -121,21 +116,87 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
             return;
         }*/
 
-       long idProduto = ID_produtosvendidos.getSelectedItemId();
+        long idCliente = spinnerCliente.getSelectedItemId();
 
         // guardar os dados
         Vendas vendas = new Vendas();
         vendas.setDescricaoProdutoV(dt);
         vendas.setNomecliente(NClient);
         vendas.setData(data);
-        vendas. setProdutos(idProduto);
+        vendas.setCliente(idCliente);
+        try {
 
-try {
+
+            Toast.makeText(InserirVendas.this,getString(R.string.GuardadoSucesso), Toast.LENGTH_LONG).show();//mensagem de guardar
+            finish();
+        }catch (Exception e){
+            Snackbar.make(
+                    ID_nomecliente,
+                    getString(R.string.erro_guardar_livro),
+                    Snackbar.LENGTH_LONG
+            ).show();
+            e.getStackTrace();
+        }
+    }
+////////////////////////////Para os Menus////////////////////////////////////
+
+
+///////////////////////Para os Botoes//////////////////////////////////////////////
+    public void canselar (View v){
+        finish();
+    }
+
+    public void GuardarVendas (View view){//Inserir e as suas validaçes
+        EditText ID_prodotosvendidos = (EditText) findViewById(R.id.ID_produtosvendidos);//Numero de produtos
+        String dt = ID_prodotosvendidos.getText().toString();
+        if (dt.trim().length() == 0) {//nome cliente
+            ID_prodotosvendidos.setError(getString(R.string.erro_ID_prodotosvendidos));
+            ID_prodotosvendidos.requestFocus();
+            return;
+        }
+
+
+
+        EditText ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);//Nome cliente
+        String NClient = ID_nomecliente.getText().toString();
+
+
+        if (NClient.trim().length() == 0) {//nome cliente
+            ID_nomecliente.setError(getString(R.string.erro_ID_prodotosvendidos));
+            ID_nomecliente.requestFocus();
+            return;
+        }
+
+        String data = ID_datavenda.getText().toString();
+
+        if (data.trim().isEmpty()) {
+            ID_datavenda.setError(getString(R.string.preecha_data));
+            return;
+        }
+        /*  int produtos;
+
+        String strPagina = editTextPagina.getText().toString();
+
+        if (strPagina.trim().isEmpty()) {
+            editTextPagina.setError(getString(R.string.preecha_pagina));
+            return;
+        }*/
+
+        long idCliente = spinnerCliente.getSelectedItemId();
+
+        // guardar os dados
+        Vendas vendas = new Vendas();
+        vendas.setDescricaoProdutoV(dt);
+        vendas.setNomecliente(NClient);
+        vendas.setData(data);
+        vendas.setCliente(idCliente);
+
+  try {
 
 
         Toast.makeText(InserirVendas.this,getString(R.string.GuardadoSucesso), Toast.LENGTH_LONG).show();//mensagem de guardar
         finish();
-}catch (Exception e){
+      }catch (Exception e){
     Snackbar.make(
             ID_nomecliente,
             getString(R.string.erro_guardar_livro),
@@ -144,6 +205,7 @@ try {
     e.getStackTrace();
 }
     }
+    ////////////////////////////////Para os Botoes////////////////////////////////////////
 
     /**
      * Instantiate and return a new Loader for the given ID.

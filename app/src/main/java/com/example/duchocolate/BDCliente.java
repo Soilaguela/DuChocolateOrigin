@@ -6,18 +6,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
 public class BDCliente implements BaseColumns {
-    public static final String NOME_TABELA = "detalhesvendas";
+    public static final String NOME_TABELA = "clientes";
     public static final String CAMPO_NOMECLIENTE1 = "NomeCliente";
     public static final String CAMPO_EMPRESA = "Empresa";
     public static final String CAMPO_EMAIL = "Email";
-    public static final String CAMPO_PREÇO = "Preço";
+    public static final String CAMPO_PREÇO = "Preco";
     public static final String CAMPO_TELEFONE = "Telefone";
     public static final String CAMPO_DATA = "data";
-    public static final String CAMPO_VENDAS = "vendas";
+    public static final String CAMPO_PRODUTO = "vendas";
 
 
     public static final String[] TODAS_COLUNAS = new String[] {
-            _ID, CAMPO_NOMECLIENTE1, CAMPO_EMPRESA, CAMPO_DATA, CAMPO_TELEFONE, CAMPO_EMAIL,CAMPO_VENDAS, CAMPO_PREÇO };
+            _ID, CAMPO_NOMECLIENTE1, CAMPO_EMPRESA, CAMPO_DATA, CAMPO_TELEFONE, CAMPO_EMAIL,CAMPO_PRODUTO, CAMPO_PREÇO };
 
 
     private SQLiteDatabase db;
@@ -35,8 +35,8 @@ public class BDCliente implements BaseColumns {
                 CAMPO_PREÇO+" INTEGER NOT NULL," +
                 CAMPO_DATA + " TEXT NOT NULL," +
                 CAMPO_TELEFONE + " INTEGER NOT NULL," +
-                CAMPO_VENDAS +" INTERGER NOT NULL,"+
-                "FOREIGN KEY (" + CAMPO_VENDAS + ") REFERENCES " + BDVendas.NOME_TABELA + "(" + BDVendas._ID + ")" +
+                CAMPO_PRODUTO +" INTERGER NOT NULL,"+
+                "FOREIGN KEY (" + CAMPO_PRODUTO + ") REFERENCES " + BDProduto.NOME_TABELA + "(" + BDProduto._ID + ")" +
                 ")"
         );
     }

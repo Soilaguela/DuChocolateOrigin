@@ -8,7 +8,9 @@ public class Vendas {
     private String DescricaoProdutoV;
     private String Nomecliente;
     private String Data;
-    private long produtos;
+    private long cliente;
+    private String nomeVenda; // Campo "externo"
+
 
     public long getId() {
         return id;
@@ -42,12 +44,12 @@ public class Vendas {
         Data = data;
     }
 
-    public long getProdutos() {
-        return produtos;
+    public long getCliente() {
+        return cliente;
     }
 
-    public void setProdutos(long produtos) {
-        this.produtos = produtos;
+    public void setCliente(long cliente) {
+        this.cliente = cliente;
     }
 
     public ContentValues getContentValues() {
@@ -57,7 +59,7 @@ public class Vendas {
         valores.put(BDVendas.CAMPO_DESCRICAOVENDA, DescricaoProdutoV);
         valores.put(BDVendas.CAMPO_NOMECLIENTE, Nomecliente);
         valores.put(BDVendas.CAMPO_DATA, Data);
-        valores.put(BDVendas.CAMPO_PRODUTOS, produtos);
+        valores.put(BDVendas.CAMPO_CLIENTE, cliente);
 
         return valores;
     }
@@ -74,11 +76,14 @@ public class Vendas {
                 cursor.getColumnIndex(BDVendas.CAMPO_NOMECLIENTE)
         );
 
-        long produtos = cursor.getLong(
-                cursor.getColumnIndex(BDVendas.CAMPO_PRODUTOS)
+        long cliente = cursor.getLong(
+                cursor.getColumnIndex(BDVendas.CAMPO_CLIENTE)
         );
         String Data = cursor.getString(
                 cursor.getColumnIndex(BDVendas.CAMPO_DATA)
+        );
+        String nomeVenda = cursor.getString(
+                cursor.getColumnIndex(BDVendas.ALIAS_NOME_VENDA)
         );
 
         Vendas vendas = new Vendas();
@@ -87,7 +92,9 @@ public class Vendas {
         vendas.setDescricaoProdutoV(DescricaoProdutoV);
         vendas.setNomecliente(Nomecliente);
         vendas.setData(Data);
-        vendas. setProdutos(produtos);
+        vendas.setCliente(cliente);
+        vendas.nomeVenda = nomeVenda;
+
 
         return vendas;
     }

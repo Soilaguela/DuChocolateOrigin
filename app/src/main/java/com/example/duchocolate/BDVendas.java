@@ -4,18 +4,24 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
+import android.util.Log;
 
 public class BDVendas implements BaseColumns {
     public static final String NOME_TABELA = "vendas";
+    public static final String ALIAS_NOME_VENDA = "nomeVenda";
+
 
 
     public static final String CAMPO_DESCRICAOVENDA = "DescricaoProdutoV";
     public static final String CAMPO_NOMECLIENTE = "Nomecliente";
     public static final String CAMPO_DATA="Data";
-    public static final String CAMPO_PRODUTOS = "produtos";
+    public static final String CAMPO_CLIENTE = "cliente";
+    public static final String CAMPO_NOME_CLIENTE = BDCliente.NOME_TABELA + "." + BDCliente.CAMPO_NOMECLIENTE1 + " AS " + ALIAS_NOME_VENDA; // tabela de categorias (só de leitura)
+
 
     public static final String[] TODAS_COLUNAS = new String[] {
-            _ID, CAMPO_DESCRICAOVENDA , CAMPO_NOMECLIENTE, CAMPO_DATA, CAMPO_PRODUTOS};
+            _ID, CAMPO_DESCRICAOVENDA , CAMPO_NOMECLIENTE, CAMPO_DATA, CAMPO_CLIENTE,CAMPO_NOME_CLIENTE};
 
 
     private SQLiteDatabase db;
@@ -30,15 +36,26 @@ public class BDVendas implements BaseColumns {
                 CAMPO_DESCRICAOVENDA + " TEXT NOT NULL," +
                 CAMPO_DATA+ " TEXT NOT NULL," +
                 CAMPO_NOMECLIENTE + " TEXT NOT NULL," +
-                CAMPO_PRODUTOS + " INTEGER  NOT NULL,"+
-                "FOREIGN KEY (" + CAMPO_PRODUTOS + ") REFERENCES " + BDProduto.NOME_TABELA + "(" + BDProduto._ID + ")" +
+                CAMPO_CLIENTE + " INTEGER  NOT NULL,"+
+                "FOREIGN KEY (" + CAMPO_CLIENTE + ") REFERENCES " + BDCliente.NOME_TABELA + "(" + BDCliente._ID + ")" +
                 ")"
         );
     }
 
-    public Cursor query(String[]columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
-        return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy);
+    public Cursor query(String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+        String colunasSelect = TextUtils.join(",", columns);
+
+        String sql = "SELECT " + colunasSelect + " FROM " + NOME_TABELA + " INNER JOIN " + BDCliente.NOME_TABELA + " WHERE " + NOME_TABELA + "." + CAMPO_CLIENTE + "=" + BDCliente.NOME_TABELA + "." + BDCliente._ID;
+
+        if (selection != null) {
+            sql += " AND " + selection;
+        }
+
+        Log.d("listar Venda", "query: " + sql);
+
+        return db.rawQuery(sql, selectionArgs);
     }
+
 
     public long insert(ContentValues values) {
         return  db.insert(NOME_TABELA, null, values);
