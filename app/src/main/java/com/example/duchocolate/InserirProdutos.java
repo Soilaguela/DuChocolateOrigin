@@ -2,6 +2,7 @@ package com.example.duchocolate;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.loader.app.LoaderManager;
@@ -16,16 +17,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class InserirProdutos extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+    private static final int ID_CURSO_LOADER_PRODUTO = 0;
+    private ActionBar actionBar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_produtos);
+
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        getSupportLoaderManager().initLoader(ID_CURSO_LOADER_PRODUTO, null, this);
+
     }
+    protected void onResume() {
+        getSupportLoaderManager().restartLoader(ID_CURSO_LOADER_PRODUTO, null, this);
+
+        super.onResume();
+    }
+
     public void cancelarProduto (View v){
         finish();
     }
@@ -34,6 +49,7 @@ public class InserirProdutos extends AppCompatActivity implements LoaderManager.
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_guardar, menu);
+
         return true;
     }
     @Override

@@ -112,7 +112,7 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
         public ViewHolderVenda(@NonNull View itemView) {
             super(itemView);
 
-            textViewcLIENTE = (TextView)itemView.findViewById(R.id.textViewcLIENTE);
+            textViewcLIENTE = (TextView)itemView.findViewById(R.id.textViewCliente);
             textViewDAta =  (TextView)itemView.findViewById(R.id.textViewDAta);
             textViewDescricaoProduto =  (TextView)itemView.findViewById(R.id.textViewDescricaoProduto);
 
@@ -123,8 +123,6 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
 
         public void setVendas(Vendas vendas) {
             this.vendas = vendas ;
-
-            textViewcLIENTE.setText(vendas.getNomecliente());
             textViewDAta.setText(String.valueOf(vendas.getData()));
             textViewDescricaoProduto.setText(vendas.getDescricaoProdutoV());
 

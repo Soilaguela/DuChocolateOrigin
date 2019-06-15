@@ -165,55 +165,51 @@ public class ExampleInstrumentedTest {
 
 
         /////////////////////Vendas/////////////////
-        BDVendas tabelaVendas = new BDVendas(db);
-        Cursor cursorVendas= getVenda(tabelaVendas);
+        BDVendas tabelaVenda = new BDVendas(db);
+        Cursor cursorVendas= getVenda(tabelaVenda);
         assertEquals(0,cursorVendas.getCount());
 
 
         //
         String DescricaoProdutoV = "Seco";
-        String Nomecliente = "Carlos Fernandes";
         String Data = "3/4/2017";
 
-        long idvenda = criaVendas(tabelaVendas, DescricaoProdutoV ,Nomecliente,Data, idcliente);
-        cursorVendas= getVenda(tabelaVendas);
+        long idvenda = criaVendas(tabelaVenda, DescricaoProdutoV ,Data, idcliente);
+        cursorVendas= getVenda(tabelaVenda);
         assertEquals(1,cursorVendas.getCount());
 
 
 
         Vendas vendas = getVendacComID(cursorVendas,idvenda);
         assertEquals(DescricaoProdutoV,vendas.getDescricaoProdutoV());
-        assertEquals(Nomecliente,vendas.getNomecliente());
         assertEquals(Data,vendas.getData());
         assertEquals(idcliente, vendas.getCliente());
 
-        idvenda  =criaVendas(tabelaVendas,"seco","Carlos","7/7/2016",id);
-        cursorVendas= getVenda(tabelaVendas);
+        idvenda  =criaVendas(tabelaVenda,"seco","7/7/2016",idcliente);
+        cursorVendas= getVenda(tabelaVenda);
         assertEquals(2,cursorVendas.getCount());
+
         // Teste read/update vendas (cRUd)
         vendas= getVendacComID(cursorVendas,idvenda);
         DescricaoProdutoV= "Em Caclos";
-        Nomecliente="Bruno";
         Data="2/7/2019";
 
         vendas.setDescricaoProdutoV(DescricaoProdutoV);
-        vendas.setNomecliente(Nomecliente);
         vendas.setData(Data);
         vendas.setCliente(idcliente);
 
-        tabelaVendas.update(vendas.getContentValues(),BDVendas._ID+"=?", new String[]{String.valueOf(idvenda)});
+        tabelaVenda.update(vendas.getContentValues(),BDVendas._ID+"=?", new String[]{String.valueOf(idvenda)});
 
-        cursorVendas= getVenda(tabelaVendas);
+        cursorVendas= getVenda(tabelaVenda);
         vendas= getVendacComID(cursorVendas, idvenda);
         assertEquals(DescricaoProdutoV,vendas.getDescricaoProdutoV());
-        assertEquals(Nomecliente, vendas.getNomecliente());
         assertEquals(Data, vendas.getData());
         assertEquals(idcliente, vendas.getCliente());
 
         // Teste read/delete  (cRuD)
-        tabelaVendas.delete(BDVendas._ID+"=?", new String[]{String.valueOf(id)});
-        cursorVendas= getVenda(tabelaVendas);
-        assertEquals(2,cursorVendas.getCount());
+        tabelaVenda.delete(BDVendas._ID+"=?", new String[]{String.valueOf(id)});
+        cursorVendas= getVenda(tabelaVenda);
+        assertEquals(1,cursorVendas.getCount());
 
     }
 
@@ -266,15 +262,14 @@ public class ExampleInstrumentedTest {
     }
 
 
-    private long criaVendas(BDVendas tabelaVendas, String DescricaoProdutoV, String Nomecliente, String Data, long cliente) {
+    private long criaVendas(BDVendas tabelaVenda, String DescricaoProdutoV,  String Data, long cliente) {
         Vendas vendas = new Vendas();
 
         vendas.setDescricaoProdutoV(DescricaoProdutoV);
-        vendas.setNomecliente(Nomecliente);
         vendas.setCliente(cliente);
         vendas.setData(Data);
 
-        long id =tabelaVendas.insert(vendas.getContentValues());
+        long id =tabelaVenda.insert(vendas.getContentValues());
         assertNotEquals(-1,id);
 
 
@@ -282,8 +277,8 @@ public class ExampleInstrumentedTest {
 
     }
 
-    private Cursor getVenda(BDVendas tabelaVendas) {
-        return tabelaVendas.query(BDVendas.TODAS_COLUNAS,null,null ,null, null, null);
+    private Cursor getVenda(BDVendas tabelaVenda) {
+        return tabelaVenda.query(BDVendas.TODAS_COLUNAS,null,null ,null, null, null);
     }
 
 

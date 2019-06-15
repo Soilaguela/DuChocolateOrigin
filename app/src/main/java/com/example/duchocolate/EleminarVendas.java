@@ -24,14 +24,11 @@ public class EleminarVendas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eleminar_vendas);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView textViewDescricaoProduto = (TextView) findViewById(R.id.textViewDescricaoProduto);
+        TextView textViewDAta = (TextView) findViewById(R.id.textViewDAta);
+        TextView textViewCliente = (TextView) findViewById(R.id.textViewCliente);
 
-        TextView ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);
-        //TextView Cliente = (Spinner) findViewById(R.id.spinnerCliente);
-        TextView ID_datavenda = (EditText) findViewById(R.id.ID_datavenda);
 
         Intent intent= getIntent();
 
@@ -57,9 +54,9 @@ public class EleminarVendas extends AppCompatActivity {
         Vendas vendas = Vendas.fromCursor(cursor);
 
 
-       /* textViewTitulo.setText(livro.getTitulo());
-        textViewCategoria.setText(livro.getNomeCategoria());
-        textViewPagina.setText(String.valueOf(livro.getPagina()));*/
+       textViewDAta.setText(vendas.getData());
+       textViewCliente.setText(String.valueOf(vendas.getCliente()));
+       textViewDescricaoProduto.setText(String.valueOf(vendas.getDescricaoProdutoV()));
 
     }
 
@@ -117,16 +114,6 @@ public class EleminarVendas extends AppCompatActivity {
             return;
         }
         //////////////////////////////////////////
-
-        TextView ID_NC = (TextView) findViewById(R.id.ID_nomecliente);//nome cliente
-        String NC = ID_NC.getText().toString();
-
-        if (NC.trim().length() == 0) {
-            ID_NC.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_NC.requestFocus();
-            return;
-        }
-
 
         ////////
         TextView produto = (TextView) findViewById(R.id.produto);

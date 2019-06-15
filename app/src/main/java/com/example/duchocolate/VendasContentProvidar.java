@@ -158,15 +158,15 @@ public class VendasContentProvidar extends ContentProvider {
             case  URI_CLIENTE:
                 return new BDCliente(bd).query(projection, selection, selectionArgs,null, null,sortOrder);
             case URI_UNICA_CLIENTE:
-                return  new BDCliente(bd).query(projection, BDCliente._ID+"=?",new String[]{id},null,null, null);
+                return  new BDCliente(bd).query(projection, BDCliente._ID + "=?",new String[]{id},null,null, null);
             case URI_PRODUTOS:
                 return new BDProduto(bd).query(projection,selection, selectionArgs, null,null,sortOrder);
             case URI_UNICA_PRODUTOS:
-                return new  BDProduto(bd).query(projection, BDProduto._ID+"=?",new String[]{id},null ,null,null);
+                return new  BDProduto(bd).query(projection, BDProduto._ID + "=?",new String[]{id},null ,null,null);
             case URI_VENDAS:
-                return  new BDVendas(bd).query(projection,selection,selectionArgs, null,null,sortOrder);
+                return  new BDVendas(bd).query(projection,selection, selectionArgs, null,null,sortOrder);
             case URI_UNICA_VENDAS:
-                return new BDVendas(bd).query(projection, BDVendas._ID+"=?", new String[]{id},null, null,null);
+                return new BDVendas(bd).query(projection, BDVendas._ID + "=?", new String[]{id},null, null,null);
             default:
                 throw new UnsupportedOperationException("URI inválida (QUERY): " + uri.toString());
         }

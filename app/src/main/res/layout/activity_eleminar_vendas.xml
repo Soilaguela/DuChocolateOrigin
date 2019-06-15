@@ -22,20 +22,6 @@
 
 
     <TextView
-        android:id="@+id/ID_NC"
-        android:layout_width="748dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/guardaAlterar"
-        android:importantForAutofill="no"
-        android:text="@string/nomeclienteE"
-        tools:targetApi="o" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="15dp" />
-
-
-    <TextView
         android:id="@+id/DATA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

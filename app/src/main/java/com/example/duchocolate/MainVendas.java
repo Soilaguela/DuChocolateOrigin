@@ -113,7 +113,7 @@ public class MainVendas extends AppCompatActivity implements LoaderManager.Loade
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this,VendasContentProvidar.ENDERECO_VENDAS,BDVendas.TODAS_COLUNAS, null,null ,BDVendas.CAMPO_NOMECLIENTE
+        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this,VendasContentProvidar.ENDERECO_VENDAS,BDVendas.TODAS_COLUNAS, null,null ,BDVendas.CAMPO_CLIENTE
         );
 
 

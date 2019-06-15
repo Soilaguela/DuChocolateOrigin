@@ -44,12 +44,10 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_vendas);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_CLIENTES, null, this);
 
-        ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);
         spinnerCliente = (Spinner) findViewById(R.id.spinnerCliente);
         ID_datavenda = (EditText) findViewById(R.id.ID_datavenda);
 
@@ -76,7 +74,6 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
 
         vendas = Vendas.fromCursor(cursor);
 
-        ID_nomecliente.setText(String.valueOf(vendas.getNomecliente()));
         ID_datavenda.setText(String.valueOf(vendas.getData()));
 
         actualizaVendasSelecionada();
@@ -150,16 +147,6 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
 
 
 
-        EditText ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);//Nome cliente
-        String NClient = ID_nomecliente.getText().toString();
-
-
-        if (NClient.trim().length() == 0) {//nome cliente
-            ID_nomecliente.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_nomecliente.requestFocus();
-            return;
-        }
-
         String data = ID_datavenda.getText().toString();
 
         if (data.trim().isEmpty()) {
@@ -180,7 +167,6 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
         // guardar os dados
         Vendas vendas = new Vendas();
         vendas.setDescricaoProdutoV(dt);
-        vendas.setNomecliente(NClient);
         vendas.setData(data);
         vendas.setCliente(idCliente);
         try {
@@ -190,7 +176,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
         }catch (Exception e){
             Snackbar.make(
                     ID_nomecliente,
-                    getString(R.string.erro_guardar_livro),
+                    getString(R.string.erro_guardar_venda),
                     Snackbar.LENGTH_LONG
             ).show();
             e.getStackTrace();
@@ -229,7 +215,6 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
         // guardar os dados
         Vendas vendas = new Vendas();
         vendas.setDescricaoProdutoV(nomecliente);
-        vendas.setNomecliente(ClienteNome);
         vendas.setData(data);
         vendas.setCliente(idCliente);
         try {
@@ -246,7 +231,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
         }catch (Exception e){
             Snackbar.make(
                     ID_nomecliente,
-                    getString(R.string.erro_guardar_livro),
+                    getString(R.string.erro_guardar_venda),
                     Snackbar.LENGTH_LONG
             ).show();
             e.getStackTrace();
@@ -265,7 +250,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, VendasContentProvidar.ENDERECO_VENDAS, BDVendas.TODAS_COLUNAS, null, null, BDVendas.CAMPO_NOMECLIENTE
+        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, VendasContentProvidar.ENDERECO_VENDAS, BDVendas.TODAS_COLUNAS, null, null, BDVendas.CAMPO_CLIENTE
         );
         return cursorLoader;
     }

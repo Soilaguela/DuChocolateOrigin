@@ -13,7 +13,7 @@
     <string name="eleminar">Eleminar</string>
     <string name="todo">TODO</string>
     <string name="menu_das_vendas">Menu </string>
-    <string name="produtos_vendidos">   Quantidade Vendida </string>
+    <string name="produtos_vendidos">   Descrição do Produto Vendido </string>
     <string name="nome_do_cliente">Nome do Cliente</string>
     <string name="data">Data</string>
     <string name="valor">Valor</string>
@@ -64,7 +64,7 @@
     <string name="eliminar">eliminar</string>
 
     <string name="preecha_data">Preencha a data</string>
-    <string name="erro_guardar_livro">Erro: Não foi possível guardar o livro</string>
+    <string name="erro_guardar_venda">Erro: Não foi possível guardar a Venda</string>
     <string name="livro_guardado_sucesso">Livro guardado com suceeso</string>
     <string name="detalhe_venda">Detalhe da venda</string>
 

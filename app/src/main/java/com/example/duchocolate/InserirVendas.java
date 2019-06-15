@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -25,7 +27,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class InserirVendas extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int ID_CURSO_LOADER_CLIENTES = 0;
 
-    private EditText ID_nomecliente;
+
     private Spinner spinnerCliente;
     private  EditText ID_datavenda;
 
@@ -34,18 +36,15 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_vendas);
 
-       // getSupportActionBar().setDisplayHomeAsUpEnabled();
-
 
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_CLIENTES, null, this);
 
-        ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);
         spinnerCliente = (Spinner) findViewById(R.id.spinnerCliente);
         ID_datavenda = (EditText) findViewById(R.id.ID_datavenda);
 
     }
 
-    @Override
+  /*  @Override
     protected void onResume() {
        // getSupportLoaderManager().restartLoader(ID_CURSO_LOADER_CLIENTES, null, this);
 
@@ -57,8 +56,21 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_guardar, menu);
         return true;
+    }*/
+
+
+    private void mostraClienteSpinner(Cursor cursorCliente) {
+        SimpleCursorAdapter adaptadorClientes = new SimpleCursorAdapter(
+                this,
+                android.R.layout.simple_list_item_1,
+                cursorCliente,
+                new String[]{BDCliente.CAMPO_NOMECLIENTE1},
+                new int[]{android.R.id.text1}
+        );
+        spinnerCliente.setAdapter(adaptadorClientes);
     }
-    @Override
+
+  /*  @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -91,37 +103,19 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
 
 
 
-        EditText ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);//Nome cliente
-        String NClient = ID_nomecliente.getText().toString();
-
-
-        if (NClient.trim().length() == 0) {//nome cliente
-            ID_nomecliente.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_nomecliente.requestFocus();
-            return;
-        }
-
         String data = ID_datavenda.getText().toString();
 
         if (data.trim().isEmpty()) {
             ID_datavenda.setError(getString(R.string.preecha_data));
             return;
         }
-        /*  int produtos;
 
-        String strPagina = editTextPagina.getText().toString();
-
-        if (strPagina.trim().isEmpty()) {
-            editTextPagina.setError(getString(R.string.preecha_pagina));
-            return;
-        }*/
 
         long idCliente = spinnerCliente.getSelectedItemId();
 
         // guardar os dados
         Vendas vendas = new Vendas();
         vendas.setDescricaoProdutoV(dt);
-        vendas.setNomecliente(NClient);
         vendas.setData(data);
         vendas.setCliente(idCliente);
         try {
@@ -131,7 +125,7 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
             finish();
         }catch (Exception e){
             Snackbar.make(
-                    ID_nomecliente,
+                    ID_datavenda,
                     getString(R.string.erro_guardar_livro),
                     Snackbar.LENGTH_LONG
             ).show();
@@ -139,7 +133,7 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 ////////////////////////////Para os Menus////////////////////////////////////
-
+*/
 
 ///////////////////////Para os Botoes//////////////////////////////////////////////
     public void canselar (View v){
@@ -147,23 +141,11 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
     }
 
     public void GuardarVendas (View view){//Inserir e as suas validaçes
-        EditText ID_prodotosvendidos = (EditText) findViewById(R.id.ID_produtosvendidos);//Numero de produtos
+       EditText ID_prodotosvendidos = (EditText) findViewById(R.id.ID_produtosvendidos);//Numero de produtos
         String dt = ID_prodotosvendidos.getText().toString();
         if (dt.trim().length() == 0) {//nome cliente
             ID_prodotosvendidos.setError(getString(R.string.erro_ID_prodotosvendidos));
             ID_prodotosvendidos.requestFocus();
-            return;
-        }
-
-
-
-        EditText ID_nomecliente = (EditText) findViewById(R.id.ID_nomecliente);//Nome cliente
-        String NClient = ID_nomecliente.getText().toString();
-
-
-        if (NClient.trim().length() == 0) {//nome cliente
-            ID_nomecliente.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_nomecliente.requestFocus();
             return;
         }
 
@@ -173,33 +155,25 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
             ID_datavenda.setError(getString(R.string.preecha_data));
             return;
         }
-        /*  int produtos;
-
-        String strPagina = editTextPagina.getText().toString();
-
-        if (strPagina.trim().isEmpty()) {
-            editTextPagina.setError(getString(R.string.preecha_pagina));
-            return;
-        }*/
 
         long idCliente = spinnerCliente.getSelectedItemId();
 
         // guardar os dados
         Vendas vendas = new Vendas();
         vendas.setDescricaoProdutoV(dt);
-        vendas.setNomecliente(NClient);
         vendas.setData(data);
         vendas.setCliente(idCliente);
 
   try {
+      getContentResolver().insert(VendasContentProvidar.ENDERECO_VENDAS, vendas.getContentValues());
 
 
         Toast.makeText(InserirVendas.this,getString(R.string.GuardadoSucesso), Toast.LENGTH_LONG).show();//mensagem de guardar
         finish();
       }catch (Exception e){
     Snackbar.make(
-            ID_nomecliente,
-            getString(R.string.erro_guardar_livro),
+            ID_datavenda,
+            getString(R.string.erro_guardar_venda),
             Snackbar.LENGTH_LONG
             ).show();
     e.getStackTrace();
@@ -220,7 +194,7 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
 
-        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, VendasContentProvidar.ENDERECO_VENDAS, BDVendas.TODAS_COLUNAS, null, null, BDVendas.CAMPO_NOMECLIENTE
+        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, VendasContentProvidar.ENDERECO_VENDAS, BDCliente.TODAS_COLUNAS, null, null, BDCliente.CAMPO_NOMECLIENTE1
         );
 
         return cursorLoader;
@@ -269,6 +243,7 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
      */
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+        mostraClienteSpinner(data);
 
     }
 
@@ -283,6 +258,6 @@ public class InserirVendas extends AppCompatActivity implements LoaderManager.Lo
      */
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-
+        mostraClienteSpinner(null);
     }
 }

@@ -6,7 +6,6 @@ import android.database.Cursor;
 public class Vendas {
     private long id;
     private String DescricaoProdutoV;
-    private String Nomecliente;
     private String Data;
     private long cliente;
     private String nomeVenda; // Campo "externo"
@@ -28,13 +27,6 @@ public class Vendas {
         DescricaoProdutoV = descricaoProdutoV;
     }
 
-    public String getNomecliente() {
-        return Nomecliente;
-    }
-
-    public void setNomecliente(String nomecliente) {
-        Nomecliente = nomecliente;
-    }
 
     public String getData() {
         return Data;
@@ -57,7 +49,6 @@ public class Vendas {
 
 
         valores.put(BDVendas.CAMPO_DESCRICAOVENDA, DescricaoProdutoV);
-        valores.put(BDVendas.CAMPO_NOMECLIENTE, Nomecliente);
         valores.put(BDVendas.CAMPO_DATA, Data);
         valores.put(BDVendas.CAMPO_CLIENTE, cliente);
 
@@ -72,9 +63,6 @@ public class Vendas {
                 cursor.getColumnIndex(BDVendas.CAMPO_DESCRICAOVENDA)
         );
 
-        String Nomecliente = cursor.getString(
-                cursor.getColumnIndex(BDVendas.CAMPO_NOMECLIENTE)
-        );
 
         long cliente = cursor.getLong(
                 cursor.getColumnIndex(BDVendas.CAMPO_CLIENTE)
@@ -90,12 +78,15 @@ public class Vendas {
 
         vendas.setId(id);
         vendas.setDescricaoProdutoV(DescricaoProdutoV);
-        vendas.setNomecliente(Nomecliente);
         vendas.setData(Data);
         vendas.setCliente(cliente);
         vendas.nomeVenda = nomeVenda;
 
 
         return vendas;
+    }
+
+    public String getNomeVenda() {
+        return nomeVenda;
     }
 }

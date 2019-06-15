@@ -21,7 +21,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="1dp"
         android:text="@string/menu_das_vendas"
-        android:textColor="#fff" />
+        android:textColor="#E6B0AA" />
 
     <Button
         android:id="@+id/bt_inserir"
