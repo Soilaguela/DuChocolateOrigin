@@ -97,13 +97,14 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
         return cursor.getCount ();
     }
 
-    public Vendas getLivroSelecionado() {
+    public Vendas getVendaSelecionado() {
         if (viewHolderVendaelecionado == null) return null;
         return viewHolderVendaelecionado.vendas;
     }
+    private static ViewHolderVenda viewHolderVendaelecionado = null;
 
     public class ViewHolderVenda extends  RecyclerView.ViewHolder implements  View.OnClickListener {
-        private TextView textViewcLIENTE;
+        private TextView textViewCliente;
         private TextView textViewDAta;
         private TextView textViewDescricaoProduto;
 
@@ -112,7 +113,7 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
         public ViewHolderVenda(@NonNull View itemView) {
             super(itemView);
 
-            textViewcLIENTE = (TextView)itemView.findViewById(R.id.textViewCliente);
+            textViewCliente = (TextView)itemView.findViewById(R.id.textViewCliente);
             textViewDAta =  (TextView)itemView.findViewById(R.id.textViewDAta);
             textViewDescricaoProduto =  (TextView)itemView.findViewById(R.id.textViewDescricaoProduto);
 
@@ -125,6 +126,7 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
             this.vendas = vendas ;
             textViewDAta.setText(String.valueOf(vendas.getData()));
             textViewDescricaoProduto.setText(vendas.getDescricaoProdutoV());
+            textViewCliente.setText(String.valueOf(vendas.getCliente()));
 
         }
 
@@ -138,7 +140,7 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
            if(viewHolderVendaelecionado!= null){
             viewHolderVendaelecionado.DesSelecioona();
            }
-            viewHolderVendaelecionado= this;
+            viewHolderVendaelecionado = this;
             Seleciona();
 
         }
@@ -150,5 +152,5 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
         }
     }
 
-    private static ViewHolderVenda viewHolderVendaelecionado = null;
+
     }

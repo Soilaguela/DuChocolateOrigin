@@ -91,6 +91,11 @@ public class AdaptadorProdutos extends RecyclerView.Adapter<AdaptadorProdutos.Vi
        if (cursor==null)return 0;
        return  cursor.getCount();
     }
+    public Produtos getProdutoSelecionado() {
+        if (viewHolderprodutoSelecionado == null) return null;
+
+        return viewHolderprodutoSelecionado.produtos;
+    }
 
     public class ViewHolderProduto extends RecyclerView.ViewHolder implements  View.OnClickListener {
         private TextView textViewQuantidade;
@@ -109,7 +114,7 @@ public class AdaptadorProdutos extends RecyclerView.Adapter<AdaptadorProdutos.Vi
         public void setProdutos(Produtos produtos){
             this.produtos= produtos;
             textViewProdutoestoque.setText(produtos.getProdutoestoque());
-            textViewQuantidade.setText(produtos.getQuantidade());
+            textViewQuantidade.setText(String.valueOf( produtos.getQuantidade()));
         }
 
         /**

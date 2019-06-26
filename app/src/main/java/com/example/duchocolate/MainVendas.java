@@ -28,6 +28,7 @@ public class MainVendas extends AppCompatActivity implements LoaderManager.Loade
     private RecyclerView recyclerViewVendas;
     private AdaptadorVendas adaptadorVendas;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,58 +49,13 @@ public class MainVendas extends AppCompatActivity implements LoaderManager.Loade
     private Menu menu;
 
     public void atualizaOpcoesMenu() {
-        Vendas vendas = adaptadorVendas.getLivroSelecionado();
+        Vendas vendas = adaptadorVendas.getVendaSelecionado();
 
         boolean mostraAlterarEliminar = (vendas != null);
 
-        menu.findItem(R.id.action_alterar).setVisible(mostraAlterarEliminar);
-        menu.findItem(R.id.action_eliminar).setVisible(mostraAlterarEliminar);
+       menu.findItem(R.id.id_guardar).setVisible(mostraAlterarEliminar);
+        //menu.findItem(R.id.action_eliminar).setVisible(mostraAlterarEliminar);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        this.menu = menu;
-
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.action_inserir) {
-            Intent i = new Intent(this, InserirVendas.class);
-            startActivity(i);
-
-            return true;
-        } else if (id == R.id.action_alterar) {
-            Intent i = new Intent(this, AlterarVendas.class);
-            i.putExtra(ID_VENDAS, adaptadorVendas.getLivroSelecionado().getId());
-
-            startActivity(i);
-
-            return true;
-        } else if (id == R.id.action_eliminar) {
-            Intent intent = new Intent(this, EleminarVendas.class);
-            intent.putExtra(ID_VENDAS, adaptadorVendas.getLivroSelecionado().getId());
-
-            startActivity(intent);
-
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
 
     /**
      * Instantiate and return a new Loader for the given ID.

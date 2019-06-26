@@ -5,66 +5,64 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".AlterarVendas">
-    <EditText
-        android:id="@+id/id_descProduto"
+    tools:context=".EleminarVendas">
+
+    <TextView
+        android:id="@+id/ID_DP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/DescriçaoProduto"
+        android:hint="@string/nomecliente"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
+        android:text="@string/DescricaoP"
         tools:targetApi="o" />
 
-    <EditText
-        android:id="@+id/idData"
-        android:hint="@string/dataV"
-        android:layout_width="322dp"
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+
+    <TextView
+        android:id="@+id/DATA"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/side_margin"
-        android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginRight="@dimen/side_margin"
-        android:layout_marginBottom="@dimen/bottom_margin"
-        android:clickable="true"
-        android:focusable="true"
-        android:autofillHints="" tools:targetApi="o"
-        android:inputType="date"/>
+        android:text="@string/dataV" />
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="15dp" />
 
     <TextView
+        android:id="@+id/produto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/endcastanho"
-        android:text="@string/detalhe_venda" />
-
-    <Spinner
-        android:id="@+id/spinneraletrarCliente"
+        android:text="@string/detalhe_venda"
+        />
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="15dp" />
+
 
     <Button
-        android:id="@+id/id_guardar"
+        android:id="@+id/button"
         android:layout_width="291dp"
-        android:layout_height="65dp"
+        android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
+        android:onClick="EleminarVendas"
         android:background="@drawable/buttonstyleith"
-        android:onClick="Alterarvendas"
-        android:text="@string/guardaAlterar"
+        android:text="@string/eleminarVendar"
         android:textColor="#fff" />
 
-
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button3"
         android:layout_width="291dp"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/buttonstyleith"
         android:textColor="#fff"
-        android:onClick="canselarAlteracao"
+        android:onClick="cancelarEleninar"
         android:layout_marginTop="16dp"
-        android:text="@string/CancelarAleracao" />
+        android:text="@string/cancelarEle" />
 
 
 </LinearLayout>

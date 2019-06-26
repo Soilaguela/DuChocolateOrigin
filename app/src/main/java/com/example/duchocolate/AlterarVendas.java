@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -24,45 +26,66 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class AlterarVendas extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int ID_CURSO_LOADER_CLIENTES = 0;
 
-    private EditText ID_nomecliente;
-    private Spinner spinnerCliente;
-    private  EditText ID_datavenda;
-
-
+    private Spinner spinneraletrarCliente;
+    private  EditText idData;
     private Vendas vendas = null;
-
-    private boolean clenteCarregadas = false;
-    private boolean clenteAtualizada = false;
+    private boolean clienteCarregadas = false;
+    private boolean clienteAtualizada = false;
 
     private Uri enderecoVendasEditar;
+
+    EditText editdata;
+    Calendar calendario;
+    DatePickerDialog.OnDateSetListener date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_vendas);
+        editdata = findViewById(R.id.ID_datavenda);
+        calendario= Calendar.getInstance();
+        date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                calendario.set(Calendar.YEAR, year);
+                calendario.set(Calendar.MONTH, monthOfYear);
+                calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                Validardata();
+            }
+        };
 
+     /* editdata.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              new DatePickerDialog(AlterarVendas.this, date,
+              calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),
+                      calendario.get(Calendar.DAY_OF_MONTH)
+              ).show();
+          }
+      });*/
 
 
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_CLIENTES, null, this);
 
-        spinnerCliente = (Spinner) findViewById(R.id.spinnerCliente);
-        ID_datavenda = (EditText) findViewById(R.id.ID_datavenda);
+        spinneraletrarCliente = (Spinner) findViewById(R.id.spinnerCliente);
+        idData = (EditText) findViewById(R.id.ID_datavenda);
 
-        Intent intent= getIntent();
+        Intent intent = getIntent();
+        long idVenda = intent.getLongExtra(MainVendas.ID_VENDAS, -1);
 
-
-        long idVendas = intent.getLongExtra(MainVendas.ID_VENDAS, -1);
-
-        if (idVendas == -1) {
-            Toast.makeText(this, "Erro: não foi possível ler o livro", Toast.LENGTH_LONG).show();
+        if (idVenda == -1) {
+            Toast.makeText(this, "Erro: não foi possível ler a Venda", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
-
-        enderecoVendasEditar = Uri.withAppendedPath(VendasContentProvidar.ENDERECO_VENDAS, String.valueOf(idVendas));
+        enderecoVendasEditar = Uri.withAppendedPath(VendasContentProvidar.ENDERECO_VENDAS, String.valueOf(idVenda));
 
         Cursor cursor = getContentResolver().query(enderecoVendasEditar, BDVendas.TODAS_COLUNAS, null, null, null);
 
@@ -71,27 +94,32 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
             finish();
             return;
         }
-
         vendas = Vendas.fromCursor(cursor);
-
-        ID_datavenda.setText(String.valueOf(vendas.getData()));
-
+        idData.setText(vendas.getData());
         actualizaVendasSelecionada();
+    }
+
+    private void Validardata() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat,
+                new Locale("pt", "PT"));
+        editdata.setText(sdf.format(calendario.getTime()));
+        editdata.setError(null);
     }
 
 
     private void actualizaVendasSelecionada() {
-        if (!clenteCarregadas) return;
-        if (clenteAtualizada) return;
+        if (!clienteCarregadas) return;
+        if (clienteAtualizada) return;
 
-        for (int i = 0; i < spinnerCliente.getCount(); i++) {
-            if (spinnerCliente.getItemIdAtPosition(i) == vendas.getId()) {
-                spinnerCliente.setSelection(i);
+        for (int i = 0; i < spinneraletrarCliente.getCount(); i++) {
+            if (spinneraletrarCliente.getItemIdAtPosition(i) == vendas.getId()) {
+                spinneraletrarCliente.setSelection(i);
                 break;
             }
         }
 
-        clenteAtualizada = true;
+        clienteAtualizada = true;
     }
 
     private void mostraClienteSpinner(Cursor cursorCliente) {
@@ -102,85 +130,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
                 new String[]{BDCliente.CAMPO_NOMECLIENTE1},
                 new int[]{android.R.id.text1}
         );
-        spinnerCliente.setAdapter(adaptadorVendas);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_guardar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.action_guardar) {
-            Alterarvendas();
-            return true;
-        } else if (id == R.id.action_cancelar) {
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    ///////Para s Menus ////////////////////////////////////
-
-    private void Alterarvendas() {
-
-        EditText ID_prodotosvendidos = (EditText) findViewById(R.id.ID_produtosvendidos);//Numero de produtos
-        String dt = ID_prodotosvendidos.getText().toString();
-        if (dt.trim().length() == 0) {//nome cliente
-            ID_prodotosvendidos.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_prodotosvendidos.requestFocus();
-            return;
-        }
-
-
-
-        String data = ID_datavenda.getText().toString();
-
-        if (data.trim().isEmpty()) {
-            ID_datavenda.setError(getString(R.string.preecha_data));
-            return;
-        }
-        /*  int produtos;
-
-        String strPagina = editTextPagina.getText().toString();
-
-        if (strPagina.trim().isEmpty()) {
-            editTextPagina.setError(getString(R.string.preecha_pagina));
-            return;
-        }*/
-
-        long idCliente = spinnerCliente.getSelectedItemId();
-
-        // guardar os dados
-        Vendas vendas = new Vendas();
-        vendas.setDescricaoProdutoV(dt);
-        vendas.setData(data);
-        vendas.setCliente(idCliente);
-        try {
-
-            Toast.makeText(AlterarVendas.this,getString(R.string.AlterarSucesso), Toast.LENGTH_LONG).show();//mensagem de guardar
-            finish();
-        }catch (Exception e){
-            Snackbar.make(
-                    ID_nomecliente,
-                    getString(R.string.erro_guardar_venda),
-                    Snackbar.LENGTH_LONG
-            ).show();
-            e.getStackTrace();
-        }
+        spinneraletrarCliente.setAdapter(adaptadorVendas);
     }
 
 
@@ -189,55 +139,58 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     public void canselarAlteracao (View v){
         finish();
     }
+
     public void Alterarvendas (View V){
-        EditText id_descProduto = (EditText) findViewById(R.id.id_descProduto);//Nome cliente
-        String nomecliente = id_descProduto.getText().toString();
 
-        if (nomecliente.trim().length() == 0) {  //nome cliente
-            id_descProduto.setError(getString(R.string.erro_ID_prodotosvendidos));
-            id_descProduto.requestFocus();
-            return ;
-        }
-
-        String data = ID_datavenda.getText().toString();
-
-        if (data.trim().isEmpty()) {
-            ID_datavenda.setError(getString(R.string.preecha_data));
+        EditText ID_prodotosvendidos = (EditText) findViewById(R.id.id_descProduto);//Numero de produtos
+        String dt = ID_prodotosvendidos.getText().toString();
+        if (dt.trim().length() == 0) {//nome cliente
+            ID_prodotosvendidos.setError(getString(R.string.erro_ID_prodotosvendidos));
+            ID_prodotosvendidos.requestFocus();
             return;
         }
 
-        //////////////////////////////////
-        EditText id_ClienteNome = (EditText) findViewById(R.id.id_ClienteNome);//Nome cliente
-        String ClienteNome = id_descProduto.getText().toString();
+        String data = editdata.getText().toString();
 
-        long idCliente = spinnerCliente.getSelectedItemId();
+        if (data.trim().length()==0){
+            editdata.setError(getString(R.string.preecha_data));
+            editdata.requestFocus();
+            if (editdata.requestFocus()) {
+                new DatePickerDialog(AlterarVendas.this, date,
+                        calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),
+                        calendario.get(Calendar.DAY_OF_MONTH)).show();
+                return;
+
+            }
+            Toast.makeText(this, "{" + getString(R.string.GuardadoSucesso) + "}", Toast.LENGTH_SHORT).show();
+            finish();
+
+        }
+
+        long idCliente = spinneraletrarCliente.getSelectedItemId();
 
         // guardar os dados
-        Vendas vendas = new Vendas();
-        vendas.setDescricaoProdutoV(nomecliente);
+
+        vendas.setDescricaoProdutoV(dt);
         vendas.setData(data);
         vendas.setCliente(idCliente);
-        try {
 
+  try {
+      getContentResolver().update(enderecoVendasEditar, vendas.getContentValues(), null, null);
 
-            if (ClienteNome.trim().length() == 0) {  //nome cliente
-            id_descProduto.setError(getString(R.string.erro_ID_prodotosvendidos));
-            id_descProduto.requestFocus();
-            return ;
-        }
-
-        Toast.makeText(AlterarVendas.this,getString(R.string.AlterarSucesso), Toast.LENGTH_LONG).show();//mensagem de guardar
+        Toast.makeText(this,getString(R.string.GuardadoSucesso), Toast.LENGTH_LONG).show();//mensagem de guardar
         finish();
-        }catch (Exception e){
-            Snackbar.make(
-                    ID_nomecliente,
-                    getString(R.string.erro_guardar_venda),
-                    Snackbar.LENGTH_LONG
+      }catch (Exception e){
+    Snackbar.make(
+            idData,
+            getString(R.string.erro_guardar_venda),
+            Snackbar.LENGTH_LONG
             ).show();
-            e.getStackTrace();
-        }
+    e.getStackTrace();
+}
+
     }
-////////////////////////Para Botoes////////////////////////////////////
+
     /**
      * Instantiate and return a new Loader for the given ID.
      *
@@ -250,7 +203,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, VendasContentProvidar.ENDERECO_VENDAS, BDVendas.TODAS_COLUNAS, null, null, BDVendas.CAMPO_CLIENTE
+        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, VendasContentProvidar.ENDERECO_CLIENTE, BDCliente.TODAS_COLUNAS, null, null, BDCliente.CAMPO_NOMECLIENTE1
         );
         return cursorLoader;
     }
@@ -299,7 +252,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         mostraClienteSpinner(data);
-        clenteCarregadas = false;
+        clienteCarregadas = false;
         actualizaVendasSelecionada();
 
 
@@ -316,8 +269,8 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
      */
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-        clenteCarregadas = false;
-        clenteAtualizada = false;
+        clienteCarregadas = false;
+        clienteAtualizada = false;
         mostraClienteSpinner(null);
 
     }

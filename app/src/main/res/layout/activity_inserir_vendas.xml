@@ -36,6 +36,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/endcastanho"
                         android:text="@string/detalhe_venda" />
 
                     <Spinner
@@ -90,14 +91,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/produtos_vendidos"
-                android:inputType="number" />
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ID_datavenda"
-            android:layout_width="match_parent"
+            android:layout_width="322dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/side_margin"
+            android:layout_marginTop="@dimen/top_margin"
+            android:layout_marginRight="@dimen/side_margin"
+            android:layout_marginBottom="@dimen/bottom_margin"
+            android:clickable="true"
+            android:focusable="true"
             android:hint="@string/datavenda"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>

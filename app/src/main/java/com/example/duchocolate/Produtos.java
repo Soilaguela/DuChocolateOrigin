@@ -6,7 +6,7 @@ import android.database.Cursor;
 public class Produtos {
     private long id;
     private String Produtoestoque;
-    private int Quantidade;
+    private Double Quantidade;
 
     public long getId() {
         return id;
@@ -24,11 +24,11 @@ public class Produtos {
         Produtoestoque = produtoestoque;
     }
 
-    public int getQuantidade() {
+    public Double getQuantidade() {
         return Quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Double quantidade) {
         Quantidade = quantidade;
     }
     public ContentValues getContentValues() {
@@ -49,7 +49,7 @@ public class Produtos {
                 cursor.getColumnIndex(BDProduto.CAMPO_PRODUTOESTOQUE)
         );
 
-        int Quantidade = cursor.getInt(
+        Double Quantidade = cursor.getDouble(
                 cursor.getColumnIndex(BDProduto.CAMPO_QUANTIDADE)
         );
 

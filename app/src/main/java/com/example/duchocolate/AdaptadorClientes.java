@@ -93,7 +93,13 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
         if (cursor ==null) return 0;
         return cursor.getCount ();
     }
-  private static  ViewHolderClientes viewHolderClientesSelecionado= null;
+    public Cliente getClientSelecionado() {
+        if (viewHolderClientesSelecionado == null) return null;
+
+        return viewHolderClientesSelecionado.cliente;
+    }
+
+    private static  ViewHolderClientes viewHolderClientesSelecionado= null;
 
     public class ViewHolderClientes extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView textViewNomeCliente;
@@ -102,7 +108,7 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
         private TextView textViewdata;
         private TextView textViewEmail;
         private TextView textViewEmpresa;
-        private TextView textViewvendas;
+        private TextView textViewproduto;
 
         private  Cliente cliente;
 
@@ -113,21 +119,20 @@ public class AdaptadorClientes extends RecyclerView.Adapter<AdaptadorClientes.Vi
             textViewTelefone =  (TextView)itemView.findViewById(R.id.textViewTelefone);
             textViewdata = (TextView)itemView.findViewById(R.id.textViewdata);
             textViewEmail =  (TextView)itemView.findViewById(R.id.textViewEmail);
-            textViewvendas =  (TextView)itemView.findViewById(R.id.textViewvendas);
             textViewEmpresa =  (TextView)itemView.findViewById(R.id.textViewEmpresa);
-
+            textViewproduto=(TextView) itemView.findViewById(R.id.textViewproduto);
             itemView.setOnClickListener(this);
         }
 
         public void setCliente(Cliente cliente){
             this.cliente= cliente;
             textViewNomeCliente.setText(cliente.getNomeCliente());
-            textViewPreço.setText(cliente.getPreço());
+            textViewPreço.setText(String.valueOf(cliente.getPreço()));
             textViewTelefone.setText(cliente.getTelefone());
             textViewdata.setText(String.valueOf(cliente.getData()));
             textViewEmail.setText(String.valueOf(cliente.getEmail()));
-            textViewvendas.setText((int) cliente.getProdutos());
             textViewEmpresa.setText(String.valueOf(cliente.getEmpresa()));
+            textViewproduto.setText(String.valueOf(cliente.getProdutos()));
 
         }
 

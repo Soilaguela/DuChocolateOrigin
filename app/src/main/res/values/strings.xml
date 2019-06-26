@@ -68,5 +68,16 @@
     <string name="livro_guardado_sucesso">Livro guardado com suceeso</string>
     <string name="detalhe_venda">Detalhe da venda</string>
 
+    <string name="cancelado">Cancelado!</string>
+    <string name="erro_guardar_produto">Erro: Não foi possível guardar a Produto</string>
+    <string name="descri_o_do_produto">Descrição do Produto</string>
+    <string name="descricaoproduto">Descricaoproduto</string>
+    <string name="carlos_ponte">Carlos Ponte</string>
+    <string name="nuB">234567356</string>
+    <string name="DAT">2/3/19</string>
+    <string name="carlosp_gmail_com">carlosp@gmail.com</string>
+    <string name="hsabores">HSABORES</string>
+    <string name="seco">Seco</string>
+
 
 </resources>

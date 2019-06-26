@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".InserirProdutos">
 
-    <EditText...
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ID_NP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:inputType="textPersonName"
         android:importantForAutofill="no" tools:targetApi="o" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/ID_QuantE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

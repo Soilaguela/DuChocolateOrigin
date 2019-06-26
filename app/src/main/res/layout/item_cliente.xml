@@ -1,56 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
+
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
         android:id="@+id/textViewNomeCliente"
-        tools:text="Carlos"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Carlos Ponte"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent
+       " />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
 
-    private String Empresa ;
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewPreço"
-        tools:text="2158"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/textViewTelefone"
-        tools:text="222665998"
-        />
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/nuB" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
+    <TextView
         android:id="@+id/textViewdata"
-        tools:text="06/04/2015"
-        />
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewEmail"
-        tools:text="Dilyn@gmail.com"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/textViewvendas"
-        tools:text="250"
-        />
-    <TextView
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="@+id/textViewproduto"
+        app:layout_constraintStart_toStartOf="@+id/textViewproduto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewproduto"
+        android:text="@string/DAT" />
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="2dp" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/carlosp_gmail_com" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
+    <TextView
         android:id="@+id/textViewEmpresa"
-        tools:text="GBT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hsabores" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+
+    <TextView
+        android:id="@+id/textViewproduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/seco" />
+
+    <TextView
+        android:id="@+id/textViewPreço"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="345.6"
         />
-
-
-
 
 </LinearLayout>

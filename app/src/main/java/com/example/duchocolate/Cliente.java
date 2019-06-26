@@ -7,11 +7,22 @@ public class Cliente {
     private long id;
     private String NomeCliente;
     private String Empresa ;
-    private int Preço ;
+    private Double Preço ;
     private int Telefone;
     private String data;
     private String Email;
     private long produtos;
+
+    public String getNomcliente() {
+        return nomcliente;
+    }
+
+    public void setNomcliente(String nomcliente) {
+        this.nomcliente = nomcliente;
+    }
+
+    private String nomcliente; // Campo "externo"
+
 
     public String getData() {
         return data;
@@ -48,11 +59,11 @@ public class Cliente {
         Empresa = empresa;
     }
 
-    public int getPreço() {
+    public Double getPreço() {
         return Preço;
     }
 
-    public void setPreço(int preço) {
+    public void setPreço(Double preço) {
         Preço = preço;
     }
 
@@ -118,7 +129,7 @@ public class Cliente {
                 cursor.getColumnIndex(BDCliente.CAMPO_DATA)
         );
 
-        int Preço = cursor.getInt(
+        Double Preço = cursor.getDouble(
                 cursor.getColumnIndex(BDCliente.CAMPO_PREÇO)
         );
         int Telefone = cursor.getInt(
@@ -127,6 +138,10 @@ public class Cliente {
         long produtos = cursor.getLong(
                 cursor.getColumnIndex(BDCliente.CAMPO_PRODUTO)
         );
+        String nomcliente = cursor.getString(
+                cursor.getColumnIndex(BDCliente.ALIAS_NOME_CLIENTE)
+        );
+
 
 
 
@@ -141,6 +156,8 @@ public class Cliente {
         cliente.setEmail(Email);
         cliente.setData(data);
         cliente.setProdutos(produtos);
+        cliente.nomcliente = nomcliente;
+
 
         return cliente;
     }

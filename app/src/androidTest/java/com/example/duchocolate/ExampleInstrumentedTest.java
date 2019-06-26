@@ -59,7 +59,7 @@ public class ExampleInstrumentedTest {
 
         // Teste escreva/ler Produtos (CRud)
         String nome = "Em Pó";
-        int quilos=234;
+        Double quilos=234.89;
         long idEmPo = criaProduto(tabelaProduto, nome,quilos);
 
         cursorProduto = getProduto(tabelaProduto);
@@ -69,7 +69,7 @@ public class ExampleInstrumentedTest {
         assertEquals(nome, produto.getProdutoestoque());
 
         nome= "Seco" ;
-        quilos=543;
+        quilos=543.00;
         long idSeco = criaProduto(tabelaProduto, nome,quilos);
 
         cursorProduto = getProduto(tabelaProduto);
@@ -88,7 +88,7 @@ public class ExampleInstrumentedTest {
         assertEquals(nome,produto.getProdutoestoque());
         // Teste Create/Delete/Read (CRuD)
 
-        long id = criaProduto(tabelaProduto,"Teste",567);
+        long id = criaProduto(tabelaProduto,"Teste",567.78);
         cursorProduto = getProduto(tabelaProduto);
         assertEquals(3,cursorProduto.getCount());
 
@@ -100,19 +100,19 @@ public class ExampleInstrumentedTest {
 
         // Teste create/read Cliente (CRud)////////
         BDCliente tabelaCliente = new BDCliente(db);
-        Cursor cursorCliente = getClientes(tabelaCliente);
+        Cursor cursorCliente = getCliente(tabelaCliente);
         assertEquals(0,cursorCliente.getCount());
 
         String NomeCliente="Carla";
         String Empresa ="SUL";
-        int Preço =455;
+        Double Preço =455.9;
         int Telefone=956789678;
         String Email="carla@gmail.com";
         String data="2/5/2019";
 
 
         long idcliente =criaCliente(tabelaCliente,NomeCliente,Preço,Telefone,Email,data,Empresa,idSeco);
-        cursorCliente = getClientes(tabelaCliente);
+        cursorCliente = getCliente(tabelaCliente);
         assertEquals(1,cursorCliente.getCount());
 
 
@@ -126,15 +126,15 @@ public class ExampleInstrumentedTest {
         assertEquals(data, cliente.getData());
         assertEquals(idSeco, cliente.getProdutos());
 
-        id = criaCliente(tabelaCliente,"Carlos",23,345678444,"fr@gmail.com", "5/7/2019","JHT",idSeco);
-        cursorCliente=getClientes(tabelaCliente);
+        id = criaCliente(tabelaCliente,"Carlos",23.7,345678444,"fr@gmail.com", "5/7/2019","JHT",idSeco);
+        cursorCliente=getCliente(tabelaCliente);
         assertEquals(2,cursorCliente.getCount());
 
         // Teste read/update c (cRUd)
         cliente= getClientesComID(cursorCliente, id);
         NomeCliente="Tereza";
         Empresa="CULT";
-        Preço=79;
+        Preço=79.9;
         Telefone=956678443;
         Email="trz@gmail.com";
         data="2/7/2019";
@@ -147,7 +147,7 @@ public class ExampleInstrumentedTest {
         cliente.setData(data);
 
         tabelaCliente.update(cliente.getContentValues(),BDCliente._ID+"=?",new String[]{String.valueOf(id)});
-        cursorCliente=getClientes(tabelaCliente);
+        cursorCliente=getCliente(tabelaCliente);
         cliente= getClientesComID(cursorCliente,id);
         assertEquals(NomeCliente,cliente.getNomeCliente());
         assertEquals(Empresa, cliente.getEmpresa());
@@ -159,7 +159,7 @@ public class ExampleInstrumentedTest {
 
         // Teste read/delete clientes (cRuD)
         tabelaCliente.delete(BDCliente._ID+"=?", new String[]{String.valueOf(id)});
-        cursorCliente= getClientes(tabelaCliente);
+        cursorCliente= getCliente(tabelaCliente);
         assertEquals(1,cursorCliente.getCount());
 
 
@@ -198,7 +198,7 @@ public class ExampleInstrumentedTest {
         vendas.setData(Data);
         vendas.setCliente(idcliente);
 
-        tabelaVenda.update(vendas.getContentValues(),BDVendas._ID+"=?", new String[]{String.valueOf(idvenda)});
+        tabelaVenda.update(vendas.getContentValues(),BDVendas._ID+"=?", new String[]{String.valueOf(id)});
 
         cursorVendas= getVenda(tabelaVenda);
         vendas= getVendacComID(cursorVendas, idvenda);
@@ -218,7 +218,7 @@ public class ExampleInstrumentedTest {
         while (cursor.moveToNext()){
             cliente = Cliente.fromCursor(cursor);
 
-            if (cliente.getId()==id){
+            if (cliente.getId()==id) {
                 break;
             }
         }
@@ -226,7 +226,7 @@ public class ExampleInstrumentedTest {
         return cliente;
     }
 
-    private long criaCliente(BDCliente tabelaCliente, String nomeCliente, int preço, int telefone, String email, String data, String empresa, long produtos) {
+    private long criaCliente(BDCliente tabelaCliente, String nomeCliente, Double preço, int telefone, String email, String data, String empresa, long produtos) {
         Cliente cliente = new Cliente();
 
         cliente.setNomeCliente(nomeCliente);
@@ -243,10 +243,9 @@ public class ExampleInstrumentedTest {
         return id;
     }
 
-    private Cursor getClientes(BDCliente tabelaCliente) {
+    private Cursor getCliente(BDCliente tabelaCliente) {
         return tabelaCliente.query(BDCliente.TODAS_COLUNAS,null,null, null, null, null);
     }
-
 
     private Vendas getVendacComID(Cursor cursor, long id) {
         Vendas vendas=null;
@@ -261,18 +260,14 @@ public class ExampleInstrumentedTest {
         return vendas;
     }
 
-
     private long criaVendas(BDVendas tabelaVenda, String DescricaoProdutoV,  String Data, long cliente) {
         Vendas vendas = new Vendas();
 
         vendas.setDescricaoProdutoV(DescricaoProdutoV);
         vendas.setCliente(cliente);
         vendas.setData(Data);
-
         long id =tabelaVenda.insert(vendas.getContentValues());
         assertNotEquals(-1,id);
-
-
         return id;
 
     }
@@ -281,12 +276,11 @@ public class ExampleInstrumentedTest {
         return tabelaVenda.query(BDVendas.TODAS_COLUNAS,null,null ,null, null, null);
     }
 
-
-    private Produtos getProdutoComID(Cursor cursor, long idEmPo) {
+    private Produtos getProdutoComID(Cursor cursor, long id) {
         Produtos produto=null;
         while (cursor.moveToNext()){
             produto= Produtos.fromCursor(cursor);
-            if ( produto.getId()==idEmPo){
+            if ( produto.getId()==id){
                 break;
             }
         }
@@ -295,7 +289,7 @@ public class ExampleInstrumentedTest {
         return produto;
     }
 
-    private long criaProduto(BDProduto tabelaProduto, String nome ,int quilos) {
+    private long criaProduto(BDProduto tabelaProduto, String nome ,Double quilos) {
         Produtos produto = new Produtos();
         produto.setProdutoestoque(nome);
         produto.setQuantidade(quilos);

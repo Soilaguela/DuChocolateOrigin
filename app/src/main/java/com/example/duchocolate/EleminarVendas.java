@@ -24,6 +24,10 @@ public class EleminarVendas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eleminar_vendas);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView textViewDescricaoProduto = (TextView) findViewById(R.id.textViewDescricaoProduto);
         TextView textViewDAta = (TextView) findViewById(R.id.textViewDAta);
@@ -36,7 +40,7 @@ public class EleminarVendas extends AppCompatActivity {
         long idVendas = intent.getLongExtra(MainVendas.ID_VENDAS, -1);
 
         if (idVendas == -1) {
-            Toast.makeText(this, "Erro: não foi possível ler o livro", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Erro: não foi possível eleminar a venda", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -46,7 +50,7 @@ public class EleminarVendas extends AppCompatActivity {
         Cursor cursor = getContentResolver().query(enderecoVendasApagar, BDVendas.TODAS_COLUNAS, null, null, null);
 
         if (!cursor.moveToNext()) {
-            Toast.makeText(this, "Erro: não foi possível ler o livro", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Erro: não foi possível eleminar a venda", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -56,10 +60,9 @@ public class EleminarVendas extends AppCompatActivity {
 
        textViewDAta.setText(vendas.getData());
        textViewCliente.setText(String.valueOf(vendas.getCliente()));
-       textViewDescricaoProduto.setText(String.valueOf(vendas.getDescricaoProdutoV()));
+       textViewDescricaoProduto.setText(vendas.getDescricaoProdutoV());
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -78,7 +81,7 @@ public class EleminarVendas extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_eliminar) {
-            EleminarVendas();
+            eliminar();
             return true;
         } else if (id == R.id.action_cancelar) {
             finish();
@@ -88,8 +91,11 @@ public class EleminarVendas extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /////////Para o Menus/////////////////////////////////
-    private void EleminarVendas() {
+
+    public void cancelarEleninar (View v){
+        finish();
+    }
+    private void eliminar() {
         // todo: perguntar ao utilizador se tem a certeza
 
         getContentResolver().delete(enderecoVendasApagar, null, null);
@@ -97,45 +103,19 @@ public class EleminarVendas extends AppCompatActivity {
         finish();
     }
 
-
-///////////////////////////////Para os Botoes /////////////////////////
-    public void cancelarEleninar (View v){
-        finish();
-    }
-
     public void EleminarVendas (View v) {//Inserir e as suas validaçes
 
-        TextView ID_DP = (TextView) findViewById(R.id.ID_DP);
-        String dp = ID_DP.getText().toString();
-
-        if (dp.trim().length() == 0) {
-            ID_DP.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_DP.requestFocus();
-            return;
-        }
-        //////////////////////////////////////////
-
-        ////////
-        TextView produto = (TextView) findViewById(R.id.produto);
-        String produt = ID_DP.getText().toString();
-
-        if (produt.trim().length() == 0) {
-            ID_DP.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_DP.requestFocus();
-            return;
-        }
-
-        ////
-        TextView DATA = (TextView) findViewById(R.id.DATA);
-        String data = ID_DP.getText().toString();
-
-        if (data.trim().length() == 0) {
-            ID_DP.setError(getString(R.string.erro_ID_prodotosvendidos));
-            ID_DP.requestFocus();
-            return;
-        }
-
-        Toast.makeText(EleminarVendas.this, getString(R.string.EleminarSucesso), Toast.LENGTH_LONG).show();
+        getContentResolver().delete(enderecoVendasApagar, null, null);
+        Toast.makeText(this, "Venda eliminada com sucesso", Toast.LENGTH_LONG).show();
         finish();
+
+       /* int erasedProfile = getContentResolver().delete(enderecoVendasApagar, null, null);
+        if (erasedProfile == 1) {
+            Toast.makeText(this, "Profile deleted with success!", Toast.LENGTH_LONG).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Error: It was not possible to delete the profile!", Toast.LENGTH_LONG).show();
+        }*/
     }
+
 }

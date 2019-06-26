@@ -40,11 +40,13 @@ public class BDVendas implements BaseColumns {
     }
 
     public Cursor query(String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
-        String colunasSelect = TextUtils.join(",", columns);
-
+      String colunasSelect = TextUtils.join(",", columns);
         String sql = " SELECT " + colunasSelect +
-                " FROM " + NOME_TABELA + " INNER JOIN " + BDCliente.NOME_TABELA + " WHERE " + NOME_TABELA + "." + CAMPO_CLIENTE + "=" + BDCliente.NOME_TABELA + "." + BDCliente._ID;
-//                NOME_TABELA + " INNER JOIN " + BdTableCategorias.NOME_TABELA + " WHERE " + NOME_TABELA + "." + CAMPO_CATEGORIA + "=" + BdTableCategorias.NOME_TABELA + "." + BdTableCategorias._ID
+
+
+      //  String sql = " SELECT " + NOME_TABELA +"."+_ID+","+"NomeCliente"+","+"Empresa"+","+NOME_TABELA+".data,Telefone,Email,vendas,Preco"+
+                " FROM " + NOME_TABELA + " INNER JOIN " + BDCliente.NOME_TABELA + " ON " + NOME_TABELA + "." + CAMPO_CLIENTE + "=" + BDCliente.NOME_TABELA + "." + BDCliente._ID;
+
         if (selection != null) {
             sql += " AND " + selection;
         }
@@ -52,6 +54,25 @@ public class BDVendas implements BaseColumns {
         Log.d("listar Venda", "query: " + sql);
 
         return db.rawQuery(sql, selectionArgs);
+
+     /*  String colunasSelect = TextUtils.join(",", columns);
+
+        String sql = " SELECT " + colunasSelect +
+                " FROM " + NOME_TABELA + " INNER JOIN " + BDCliente.NOME_TABELA + " WHERE " + NOME_TABELA + "." + CAMPO_CLIENTE + "=" + BDCliente.NOME_TABELA + "." + BDCliente._ID;
+
+        if (selection != null) {
+            sql += " AND " + selection;
+        }
+
+        Log.d("listar Venda", "query: " + sql);
+
+        return db.rawQuery(sql, selectionArgs);*/
+        /*A string sql ficou:
+
+
+                  String sql = " SELECT " + colunasSelect +
+                " FROM " + NOME_TABELA + " INNER JOIN " + BDCliente.NOME_TABELA + " WHERE " + NOME_TABELA + "." + CAMPO_CLIENTE + "=" + BDCliente.NOME_TABELA + "." + BDCliente._ID;
+                */
     }
 
 
