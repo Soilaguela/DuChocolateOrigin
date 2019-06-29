@@ -22,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar;
 //import android.content.CursorLoader;
 
 public class MainProdutos extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+    public static final String ID_PRODUTO = "ID_PRODUTO";
 
     private static final int ID_CURSO_LOADER_PRODUTOS = 0;
 

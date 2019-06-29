@@ -44,15 +44,16 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".AlterarVendas"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/alterarvendas"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".InserirVendas"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".EleminarVendas"
-            android:label="@string/app_name"
+            android:label="@string/eleminarvendas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"

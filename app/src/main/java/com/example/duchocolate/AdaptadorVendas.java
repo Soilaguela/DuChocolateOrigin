@@ -104,9 +104,9 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
     private static ViewHolderVenda viewHolderVendaelecionado = null;
 
     public class ViewHolderVenda extends  RecyclerView.ViewHolder implements  View.OnClickListener {
-        private TextView textViewCliente;
-        private TextView textViewDAta;
-        private TextView textViewDescricaoProduto;
+        public TextView textViewCliente;
+        public TextView textViewDAta;
+        public TextView textViewDescricaoProduto;
 
         private Vendas vendas;
 

@@ -30,7 +30,7 @@ public class EleminarCliente extends AppCompatActivity {
         /////////////////////////////////////////
 
 
-        EditText ID_EMPE = (EditText) findViewById(R.id.ID_EMPE);//Nome cliente
+        EditText ID_EMPE = (EditText) findViewById(R.id.ID_EMP);//Nome cliente
         String NP = ID_EMPE.getText().toString();
         if (NP.trim().length() == 0) {//nome cliente
             ID_EMPE.setError(getString(R.string.erro_ID_prodotosvendidos));
@@ -39,7 +39,7 @@ public class EleminarCliente extends AppCompatActivity {
         }
         /////////////////////////////////////////
 
-        EditText ID_PREÇOE = (EditText) findViewById(R.id.ID_PREÇOE);//valor
+        EditText ID_PREÇOE = (EditText) findViewById(R.id.ID_PREÇO);//valor
 
         double valor = 0;//validação valor para maior k 0
 
@@ -59,7 +59,7 @@ public class EleminarCliente extends AppCompatActivity {
 
         /////////////////////////////////////////
 
-        EditText ID_TELEFE = (EditText) findViewById(R.id.ID_TELEFE);//valor
+        EditText ID_TELEFE = (EditText) findViewById(R.id.ID_TELEF);//valor
 
         double valor1 = 0;//validação valor para maior k 0
 

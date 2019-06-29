@@ -26,7 +26,6 @@ public class Menu_Produto extends AppCompatActivity {
     public void AlterarProdutos (View v){
         Toast.makeText(this, "Alterar", Toast.LENGTH_SHORT).show();
         Intent i =  new Intent( this,AlterarProdutos.class );
-        i.putExtra(ID_PRODUTOS, adaptadorProdutos.getProdutoSelecionado().getId());
 
         startActivity(i);
     }
@@ -34,7 +33,6 @@ public class Menu_Produto extends AppCompatActivity {
     public void EleminarProduto (View v){
         Toast.makeText(this, "Eleminar", Toast.LENGTH_SHORT).show();
         Intent i =  new Intent( this,EleminarProdutos.class );
-        i.putExtra(ID_PRODUTOS, adaptadorProdutos.getProdutoSelecionado().getId());
         startActivity(i);
     }
 }

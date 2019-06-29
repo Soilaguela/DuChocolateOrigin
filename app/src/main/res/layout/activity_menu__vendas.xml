@@ -62,4 +62,15 @@
         android:textColor="#E6B0AA"
         />
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerViewVendas"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+    />
+
 </LinearLayout>

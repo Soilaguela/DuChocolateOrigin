@@ -37,7 +37,8 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_cliente);
-        spinnerProduto =(Spinner)findViewById(R.id.spinnerProduto);
+
+        spinnerProduto =(Spinner)findViewById(R.id.spinnerCliente);
         editProfileAge = findViewById(R.id.ID_DATA);
         myCalendar = Calendar.getInstance();
         date = new DatePickerDialog.OnDateSetListener() {
@@ -65,7 +66,7 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
 
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_PRODUTOS, null, this);
 
-        spinnerProduto = (Spinner) findViewById(R.id.spinnerProduto);
+        spinnerProduto = (Spinner) findViewById(R.id.spinnerCliente);
         editTextDate = (EditText) findViewById(R.id.ID_DATA);
     }
 

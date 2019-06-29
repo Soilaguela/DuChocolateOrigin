@@ -61,17 +61,6 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
             }
         };
 
-     /* editdata.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              new DatePickerDialog(AlterarVendas.this, date,
-              calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),
-                      calendario.get(Calendar.DAY_OF_MONTH)
-              ).show();
-          }
-      });*/
-
-
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_CLIENTES, null, this);
 
         spinneraletrarCliente = (Spinner) findViewById(R.id.spinnerCliente);

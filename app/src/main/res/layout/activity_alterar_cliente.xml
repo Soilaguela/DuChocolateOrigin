@@ -8,7 +8,7 @@
     tools:context=".AlterarCliente">
 
     <EditText
-        android:id="@+id/ID_NCVE"
+        android:id="@+id/ID_NCV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/nomeclienteD"
@@ -18,7 +18,7 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/ID_EMPE"
+        android:id="@+id/ID_EMP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/nomeempresa"
@@ -27,7 +27,7 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/ID_PREÇOE"
+        android:id="@+id/ID_PREÇO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/preço"
@@ -37,7 +37,7 @@
 
 
     <EditText
-        android:id="@+id/ID_TELEFE"
+        android:id="@+id/ID_TELEF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Telefone"
@@ -46,7 +46,7 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/ID_DATAE"
+        android:id="@+id/ID_DATA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/dataD"
@@ -55,7 +55,7 @@
         tools:targetApi="o" />
 
     <EditText
-        android:id="@+id/ID_EMAILE"
+        android:id="@+id/ID_EMAIL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"

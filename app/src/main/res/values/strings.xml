@@ -78,6 +78,8 @@
     <string name="carlosp_gmail_com">carlosp@gmail.com</string>
     <string name="hsabores">HSABORES</string>
     <string name="seco">Seco</string>
+    <string name="alterarvendas">Alterar Vendas</string>
+    <string name="eleminarvendas">Eleminar Vendas</string>
 
 
 </resources>
