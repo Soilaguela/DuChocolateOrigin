@@ -9,6 +9,7 @@ import androidx.loader.content.Loader;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -38,7 +39,8 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir_cliente);
 
-        spinnerProduto =(Spinner)findViewById(R.id.spinnerCliente);
+       spinnerProduto =(Spinner)findViewById(R.id.spinnerCliente);
+
         editProfileAge = findViewById(R.id.ID_DATA);
         myCalendar = Calendar.getInstance();
         date = new DatePickerDialog.OnDateSetListener() {
@@ -66,7 +68,8 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
 
         getSupportLoaderManager().initLoader(ID_CURSO_LOADER_PRODUTOS, null, this);
 
-        spinnerProduto = (Spinner) findViewById(R.id.spinnerCliente);
+       //spinnerProduto =(Spinner)findViewById(R.id.spinnerCliente);
+
         editTextDate = (EditText) findViewById(R.id.ID_DATA);
     }
 
@@ -102,7 +105,7 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
 
     public void GuardarDetalhesVenda(View v) {//Inserir e as suas validaçes
 
-        EditText ID_NCV = (EditText) findViewById(R.id.ID_NCV);//Nome cliente
+        EditText ID_NCV = (EditText) findViewById(R.id.ID_NCV);//CLIENTE
         String NCV = ID_NCV.getText().toString();
         if (NCV.trim().length() == 0) {//nome cliente
             ID_NCV.setError(getString(R.string.erro_ID_prodotosvendidos));
@@ -112,7 +115,7 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
         /////////////////////////////////////////
 
 
-        EditText ID_EMP = (EditText) findViewById(R.id.ID_EMP);//Nome cliente
+        EditText ID_EMP = (EditText) findViewById(R.id.ID_EMP);//EMPRESA
         String NP = ID_EMP.getText().toString();
         if (NP.trim().length() == 0) {//nome cliente
             ID_EMP.setError(getString(R.string.erro_ID_prodotosvendidos));
@@ -120,8 +123,8 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
             return;
         }
         /////////////////////////////////////////
-        EditText ID_EMAIL = (EditText) findViewById(R.id.ID_EMAIL);//Nome cliente
-        String editTextEmail = ID_EMP.getText().toString();
+        EditText ID_EMAIL = (EditText) findViewById(R.id.ID_EMAIL);//EMAIL
+        String editTextEmail = ID_EMAIL.getText().toString();
         if (editTextEmail.trim().length() == 0) {//EMAIL
             ID_EMAIL.setError(getString(R.string.erro_ID_prodotosvendidos));
             ID_EMAIL.requestFocus();
@@ -131,10 +134,8 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
 
         /////////////////////////
 
-        EditText ID_PREÇO = (EditText) findViewById(R.id.ID_PREÇO);//valor
-
+        EditText ID_PREÇO = (EditText) findViewById(R.id.ID_PREÇO);//PRECO
         double Preço = 0;//validação valor para maior k 0
-
         try {
             Preço = Double.parseDouble(ID_PREÇO.getText().toString());
         } catch (NumberFormatException e) {
@@ -151,28 +152,29 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
 
         /////////////////////////////////////////
 
-        EditText ID_TELEF = (EditText) findViewById(R.id.ID_TELEF);//valor
+        EditText ID_TELEF = (EditText) findViewById(R.id.ID_TELEF);//TELEFONE
 
-        int valor1 = 0;//validação valor para maior k 0
+        int valor_telef = 0;//validação valor para maior k 0
 
         try {
-            valor1 = Integer.parseInt(ID_TELEF.getText().toString());
+            valor_telef = Integer.parseInt(ID_TELEF.getText().toString());
         } catch (NumberFormatException e) {
             ID_TELEF.setError(getString(R.string.erro_ID_prodotosvendidos));
             ID_TELEF.requestFocus();
             return;
         }
 
-        if (valor1 == 0) {
+        Log.d("telefono", ""+valor_telef);
+
+        if (valor_telef == 0) {
             ID_TELEF.setError(getString(R.string.erro_0));
             ID_TELEF.requestFocus();
             return;
         }
         ///////////
-        //////////////////
 
 
-        //////////////
+
 
         /////////////////////////////////////////
         String data = editProfileAge.getText().toString();
@@ -202,7 +204,7 @@ public class InserirCliente extends AppCompatActivity implements LoaderManager.L
         cliente.setNomeCliente(NCV);
         cliente.setEmpresa(NP);
         cliente.setPreço(Preço);
-        cliente.setTelefone(valor1);
+        cliente.setTelefone(valor_telef);
         cliente.setEmail(editTextEmail);
         cliente.setData(data);
         cliente.setProdutos(idProduto);

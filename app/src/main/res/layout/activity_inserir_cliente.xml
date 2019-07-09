@@ -77,11 +77,10 @@
         android:layout_marginStart="8dp" />
 
     <Spinner
-        android:id="@+id/spinnerProduto"
+        android:id="@+id/spinnerCliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/descricaoproduto"
-        ></Spinner>
+        android:hint="@string/descricaoproduto"></Spinner>
     <Space
         android:layout_width="match_parent"
         android:layout_height="2dp" />

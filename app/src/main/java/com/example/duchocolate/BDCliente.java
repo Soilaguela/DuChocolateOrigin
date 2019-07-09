@@ -51,10 +51,10 @@ public class BDCliente implements BaseColumns {
      //   return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy);
         String colunasSelect = TextUtils.join(",", columns);
         //
-        // SELECT clientes._id,clientes.NomeCliente,Empresa,data,Telefone,Email,clientes.produto,Preco,clientes.produto.Produtoestoque  nomcliente clientes  produto  clientes.produto=produto._id
-    // String sql = " SELECT " + NOME_TABELA +"."+_ID+","+"Produtoestoque"+","+"Quantidade"+","+NOME_TABELA+".produto"+
-       String sql = " SELECT " + colunasSelect +
-                " FROM " + NOME_TABELA + " INNER JOIN " + BDProduto.NOME_TABELA + " WHERE " + NOME_TABELA + "." + CAMPO_PRODUTO + "=" + BDProduto.NOME_TABELA + "." + BDProduto._ID;
+        String sql = " SELECT clientes._id,clientes.NomeCliente,Empresa,clientes.data,Telefone,Email,clientes.produto,Preco,produto.Produtoestoque As  nomcliente FROM clientes INNER JOIN produto WHERE  clientes.produto=produto._id";
+    //String sql = " SELECT " + NOME_TABELA +"."+_ID+","+"Produtoestoque"+","+"Quantidade"+","+NOME_TABELA+".produto"+
+     //  String sql = " SELECT " + colunasSelect +
+      //          " FROM " + NOME_TABELA + " INNER JOIN " + BDProduto.NOME_TABELA + " WHERE " + NOME_TABELA + "." + CAMPO_PRODUTO + "=" + BDProduto.NOME_TABELA + "." + BDProduto._ID;
 
         if (selection != null) {
             sql += " AND " + selection;

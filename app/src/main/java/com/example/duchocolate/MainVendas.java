@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CursorAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,6 +78,7 @@ public class MainVendas extends AppCompatActivity implements LoaderManager.Loade
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        Toast.makeText(this, "Clickaste", Toast.LENGTH_SHORT).show();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

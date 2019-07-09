@@ -24,14 +24,13 @@ public class Menu_Produto extends AppCompatActivity {
 
 
     public void AlterarProdutos (View v){
-        Toast.makeText(this, "Alterar", Toast.LENGTH_SHORT).show();
-        Intent i =  new Intent( this,AlterarProdutos.class );
+        Toast.makeText(this, "Lista de Produtos", Toast.LENGTH_SHORT).show();
+        Intent i =  new Intent( this,MainProdutos.class );
 
         startActivity(i);
     }
 
     public void EleminarProduto (View v){
-        Toast.makeText(this, "Eleminar", Toast.LENGTH_SHORT).show();
         Intent i =  new Intent( this,EleminarProdutos.class );
         startActivity(i);
     }

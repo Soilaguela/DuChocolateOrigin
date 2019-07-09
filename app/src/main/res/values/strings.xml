@@ -9,7 +9,7 @@
     <string name="gastos">Cliente</string>
     <string name="todo1">TODO</string>
     <string name="inserir">Inserir</string>
-    <string name="alterar">Alterar</string>
+    <string name="alterar">Gerir lista de Produtos</string>
     <string name="eleminar">Eleminar</string>
     <string name="todo">TODO</string>
     <string name="menu_das_vendas">Menu </string>
@@ -65,7 +65,6 @@
 
     <string name="preecha_data">Preencha a data</string>
     <string name="erro_guardar_venda">Erro: Não foi possível guardar a Venda</string>
-    <string name="livro_guardado_sucesso">Livro guardado com suceeso</string>
     <string name="detalhe_venda">Detalhe da venda</string>
 
     <string name="cancelado">Cancelado!</string>
@@ -80,6 +79,11 @@
     <string name="seco">Seco</string>
     <string name="alterarvendas">Alterar Vendas</string>
     <string name="eleminarvendas">Eleminar Vendas</string>
+    <string name="produto_em_estoque_154">Produto em estoque :154</string>
+    <string name="valor_3000">Valor :3000</string>
+    <string name="menu_p">Menu Produto</string>
+    <string name="Gerir_Cliente">Gerir lista de Clientes</string>
+    <string name="Eleminarvendas">Gerir lista de Vendas</string>
 
 
 </resources>

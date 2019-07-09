@@ -146,7 +146,7 @@ public class ExampleInstrumentedTest {
         cliente.setPreço(Preço);
         cliente.setData(data);
 
-        tabelaCliente.update(cliente.getContentValues(),BDCliente._ID+"=?",new String[]{String.valueOf(id)});
+        tabelaCliente.update(cliente.getContentValues(),BDCliente._ID+"=?",new String[]{String.valueOf(idcliente)});
         cursorCliente=getCliente(tabelaCliente);
         cliente= getClientesComID(cursorCliente,id);
         assertEquals(NomeCliente,cliente.getNomeCliente());
@@ -208,6 +208,7 @@ public class ExampleInstrumentedTest {
 
         // Teste read/delete  (cRuD)
         tabelaVenda.delete(BDVendas._ID+"=?", new String[]{String.valueOf(id)});
+        //
         cursorVendas= getVenda(tabelaVenda);
         assertEquals(1,cursorVendas.getCount());
 

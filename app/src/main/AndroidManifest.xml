@@ -20,7 +20,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Menu_Produto"
-            android:label="@string/app_name"
+            android:label="@string/menu_p"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".InserirCliente"
@@ -54,6 +54,18 @@
         <activity
             android:name=".EleminarVendas"
             android:label="@string/eleminarvendas"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainProdutos"
+            android:label="MainProdutos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainClientes"
+            android:label="MainClientes"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainVendas"
+            android:label="MainVendas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"

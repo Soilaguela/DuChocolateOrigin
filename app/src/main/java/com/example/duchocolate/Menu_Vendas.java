@@ -24,8 +24,8 @@ public class Menu_Vendas extends AppCompatActivity {
 
 
     public void AlterarVendas (View v){
-        Toast.makeText(this, "Alterar", Toast.LENGTH_SHORT).show();
-        Intent i =  new Intent( this,AlterarVendas.class );
+        Toast.makeText(this, "Listar Vendas", Toast.LENGTH_SHORT).show();
+        Intent i =  new Intent( this, MainVendas.class );
       //  i.putExtra(ID_VENDAS, adaptadorVendas.getVendaSelecionado().getId());
         startActivity(i);
     }

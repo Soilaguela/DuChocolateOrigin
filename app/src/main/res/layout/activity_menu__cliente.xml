@@ -44,21 +44,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:background="@drawable/buttonstyleith1"
-        android:text="@string/alterar"
+        android:text="@string/Gerir_Cliente"
         android:onClick="AlterarClientes"
         android:textColor="#E6B0AA"
         />
 
-    <Button
-        android:id="@+id/bt_eleminar"
-        android:layout_width="291dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/buttonstyleith1"
-        android:onClick="EleminarClientes"
-        android:text="@string/eleminar"
-        android:textColor="#E6B0AA"
-        />
 
 </LinearLayout>

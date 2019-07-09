@@ -45,32 +45,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:background="@drawable/buttonstyleith1"
-        android:text="@string/alterar"
+        android:text="@string/Eleminarvendas"
         android:onClick="AlterarVendas"
         android:textColor="#E6B0AA"
         />
 
-    <Button
-        android:id="@+id/bt_eleminar"
-        android:layout_width="291dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/buttonstyleith1"
-        android:text="@string/eleminar"
-        android:onClick="EleminarVendas"
-        android:textColor="#E6B0AA"
-        />
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/recyclerViewVendas"
-        android:layout_height="match_parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-    />
 
 </LinearLayout>

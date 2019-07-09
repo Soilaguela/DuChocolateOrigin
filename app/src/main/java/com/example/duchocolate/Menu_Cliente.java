@@ -17,9 +17,7 @@ public class Menu_Cliente extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__cliente);
     }
-    /*
-     * Chamar o Inserir , Aletrar e Eleminar Menu Cliente
-     * */
+
     public void InserirClientes (View v){
         Toast.makeText(this, "Inserir", Toast.LENGTH_SHORT).show();
         Intent i =  new Intent( this,InserirCliente.class );
@@ -28,15 +26,14 @@ public class Menu_Cliente extends AppCompatActivity {
 
     public void AlterarClientes (View v){
         Toast.makeText(this, "Aletrar", Toast.LENGTH_SHORT).show();
-        Intent i =  new Intent( this,AlterarCliente.class );
-//        i.putExtra(ID_CLIENTE, adaptadorClientes.getClientSelecionado().getId());
+        Intent i =  new Intent( this,MainClientes.class );
         startActivity(i);
     }
 
     public void EleminarClientes (View v){
         Toast.makeText(this, "Eleminar", Toast.LENGTH_SHORT).show();
         Intent i =  new Intent( this,EleminarCliente.class );
-        i.putExtra(ID_CLIENTE, adaptadorClientes.getClientSelecionado().getId());
+      //  i.putExtra(ID_CLIENTE, adaptadorClientes.getClientSelecionado().getId());
         startActivity(i);
     }
 }

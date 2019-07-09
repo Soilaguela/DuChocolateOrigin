@@ -1,6 +1,10 @@
 package com.example.duchocolate;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -17,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 
-public class AlterarProdutos extends AppCompatActivity {
+public class AlterarProdutos extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int ID_CURSO_LOADER_PRODUTOS = 0;
 
     private boolean categoriasCarregadas = false;
@@ -27,18 +31,18 @@ public class AlterarProdutos extends AppCompatActivity {
 
     private Produtos produtos = null;
 
+
     private TextView textViewQuantidade;
     private TextView textViewProdutoestoque;
 
-
-    EditText editProfileAge;
-    Calendar myCalendar;
-    DatePickerDialog.OnDateSetListener date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_produtos);
+
+        textViewQuantidade = (TextView) findViewById(R.id.ID_AQ);
+        textViewProdutoestoque = (TextView) findViewById(R.id.id_ADP);
 
         Intent intent = getIntent();
 
@@ -73,7 +77,7 @@ public class AlterarProdutos extends AppCompatActivity {
     }
 
     public void AlterarProduto(View V) {
-        EditText id_ADP = (EditText) findViewById(R.id.id_ADP);//Nome cliente
+      /*  EditText id_ADP = (EditText) findViewById(R.id.id_ADP);//Nome cliente
         String NP = id_ADP.getText().toString();
         if (NP.trim().length() == 0) {//nome cliente
             id_ADP.setError(getString(R.string.erro_ID_prodotosvendidos));
@@ -98,7 +102,28 @@ public class AlterarProdutos extends AppCompatActivity {
             ID_AQ.setError(getString(R.string.erro_0));
             ID_AQ.requestFocus();
             return;
+        }*/
+        String quantidade = textViewQuantidade.getText().toString();
+
+        Double dquantidade = Double.parseDouble(quantidade);
+
+        if (quantidade.trim().isEmpty()) {
+            textViewQuantidade.setError("Please insert a name!");
+            return;
         }
+
+        String produtostock = textViewProdutoestoque.getText().toString();
+
+        if (produtostock.trim().isEmpty()) {
+            textViewProdutoestoque.setError("Please insert a country!");
+            return;
+        }
+
+
+
+        produtos.setProdutoestoque(produtostock);
+        produtos.setQuantidade(dquantidade);
+
         try {
             getContentResolver().update(enderecoProdutoEditar, produtos.getContentValues(), null, null);
 
@@ -106,12 +131,33 @@ public class AlterarProdutos extends AppCompatActivity {
             finish();
         } catch (Exception e) {
             Snackbar.make(
-                    ID_AQ,
+                    textViewProdutoestoque,
                     getString(R.string.erro_guardar_produto),
                     Snackbar.LENGTH_LONG)
                     .show();
 
+            Toast.makeText(this, "ERRO PÁ", Toast.LENGTH_SHORT).show();
+
             e.printStackTrace();
         }
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        androidx.loader.content.CursorLoader cursorLoader = new androidx.loader.content.CursorLoader(this, VendasContentProvidar.ENDERECO_PRODUTOS, BDProduto.TODAS_COLUNAS, null, null, BDProduto.CAMPO_PRODUTOESTOQUE
+        );
+
+        return cursorLoader;
+    }
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+
+
     }
 }

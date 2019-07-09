@@ -44,7 +44,7 @@ public class BDVendas implements BaseColumns {
         String sql = " SELECT " + colunasSelect +
 
 
-      //  String sql = " SELECT " + NOME_TABELA +"."+_ID+","+"NomeCliente"+","+"Empresa"+","+NOME_TABELA+".data,Telefone,Email,vendas,Preco"+
+     // String sql = " SELECT " + NOME_TABELA +"."+_ID+","+"NomeCliente"+","+"Empresa"+","+NOME_TABELA+".data,Telefone,Email,vendas,Preco"+
                 " FROM " + NOME_TABELA + " INNER JOIN " + BDCliente.NOME_TABELA + " ON " + NOME_TABELA + "." + CAMPO_CLIENTE + "=" + BDCliente.NOME_TABELA + "." + BDCliente._ID;
 
         if (selection != null) {

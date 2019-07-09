@@ -1,77 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/textViewNomeCliente"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Carlos Ponte"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent
-       " />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Carlos Ponte" />
+
 
     <TextView
         android:id="@+id/textViewTelefone"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nuB" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:text="@string/nuB"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewNomeCliente"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeCliente" />
+
 
     <TextView
         android:id="@+id/textViewdata"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:text="@string/DAT"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="@+id/textViewproduto"
-        app:layout_constraintStart_toStartOf="@+id/textViewproduto"
-        app:layout_constraintTop_toBottomOf="@+id/textViewproduto"
-        android:text="@string/DAT" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewTelefone"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTelefone" />
+
 
     <TextView
         android:id="@+id/textViewEmail"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/carlosp_gmail_com" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:text="@string/carlosp_gmail_com"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="36dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewdata"
+        app:layout_constraintTop_toBottomOf="@+id/textViewdata"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
 
     <TextView
         android:id="@+id/textViewEmpresa"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hsabores" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:text="@string/hsabores"
+        tools:layout_editor_absoluteX="146dp"
+        tools:layout_editor_absoluteY="65dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
 
     <TextView
         android:id="@+id/textViewproduto"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/seco" />
+        android:text="@string/seco"
+        tools:layout_editor_absoluteX="270dp"
+        tools:layout_editor_absoluteY="0dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewEmpresa"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmpresa"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        />
 
     <TextView
         android:id="@+id/textViewPreço"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="345.6"
-        />
+        app:layout_constraintStart_toStartOf="@+id/textViewproduto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewproduto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="345.6" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
