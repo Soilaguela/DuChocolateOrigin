@@ -296,7 +296,6 @@ public class AlterarCliente extends AppCompatActivity implements LoaderManager.L
         produtoLoaded = false;
         produtoRefreshed= false;
         mostraProdutoSpinner(null);
-
     }
 }
 

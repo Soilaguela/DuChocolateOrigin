@@ -27,7 +27,8 @@ public class EleminarVendas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eleminar_vendas);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView et_nome_cliente = (TextView) findViewById(R.id.ID_NCVE);
+
+        TextView et_nome_cliente = (TextView) findViewById(R.id.ID_DP);
         TextView spinnerCliente = (TextView) findViewById(R.id.produto);
         TextView editTextDate = (TextView) findViewById(R.id.DATA);
 
@@ -41,20 +42,20 @@ public class EleminarVendas extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        long idvendas = intent.getLongExtra(MainClientes.ID_CLIENTES, -1);
+        long idvendas = intent.getLongExtra(MainVendas.ID_VENDAS, -1);
 
         if (idvendas == -1) {
-            Toast.makeText(this, "Erro: não foi possível ler o Cliente Selecionado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Erro: não foi possível ler a venda Selecionada", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
 
         enderecoVendasApagar = Uri.withAppendedPath(VendasContentProvidar.ENDERECO_VENDAS, String.valueOf(idvendas));
 
-        Cursor cursor = getContentResolver().query(enderecoVendasApagar, BDProduto.TODAS_COLUNAS, null, null, null);
+        Cursor cursor = getContentResolver().query(enderecoVendasApagar, BDVendas.TODAS_COLUNAS, null, null, null);
 
         if (!cursor.moveToNext()) {
-            Toast.makeText(this, "Erro: não foi possível ler o Cliente", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Erro: não foi possível ler a venda", Toast.LENGTH_LONG).show();
             finish();
             return;
         }

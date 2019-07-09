@@ -81,7 +81,7 @@ public class AdaptadorVendas extends RecyclerView.Adapter<AdaptadorVendas.ViewHo
             this.vendas = vendas ;
             textViewDAta.setText(String.valueOf(vendas.getData()));
             textViewDescricaoProduto.setText(vendas.getDescricaoProdutoV());
-            textViewCliente.setText(String.valueOf(vendas.getCliente()));
+            textViewCliente.setText((vendas.getCliente());
 
         }
 

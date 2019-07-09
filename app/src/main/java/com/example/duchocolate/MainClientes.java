@@ -120,9 +120,7 @@ public class MainClientes extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        /*FloatingActionButton fab = findViewById(R.id.fab);
 
-        Snackbar.make(fab, "Clientes existentes: " + data.getCount(), Snackbar.LENGTH_INDEFINITE).show();*/
         adaptadorClientes.setCursor(data);
     }
 

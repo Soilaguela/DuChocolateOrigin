@@ -40,10 +40,9 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     private boolean produtoRefreshed = false;
 
     private Uri enderecoVendasEditar;
-  //  private Vendas vendas = null;
 
-    private EditText et_nome_cliente;;
-    private Spinner spinnerCliente ;
+    private EditText et_descr_venda;;
+    private Spinner spinnerVenda ;
     private EditText editTextDate;
 
     EditText editProfileAge;
@@ -56,11 +55,11 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_vendas);
-        et_nome_cliente = (EditText) findViewById(R.id.id_descProduto);
+        et_descr_venda = (EditText) findViewById(R.id.id_descProduto);
         editTextDate = (EditText) findViewById(R.id.idData);
-        spinnerCliente = (Spinner) findViewById(R.id.spinneraletrarCliente);
+        spinnerVenda = (Spinner) findViewById(R.id.spinneraletrarCliente);
 
-        editProfileAge = findViewById(R.id.ID_DATA);
+        editProfileAge = findViewById(R.id.idData);
         myCalendar = Calendar.getInstance();
         date = new DatePickerDialog.OnDateSetListener() {
 
@@ -90,20 +89,20 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
 
         Intent intent = getIntent();
 
-        long idvendas = intent.getLongExtra(MainClientes.ID_CLIENTES, -1);
+        long idvendas = intent.getLongExtra(MainVendas.ID_VENDAS, -1);
 
         if (idvendas == -1) {
-            Toast.makeText(this, "Erro: não foi possível ler o Cliente Selecionado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Erro: não foi possível ler a Venda Selecionada", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
 
-        enderecoVendasEditar = Uri.withAppendedPath(VendasContentProvidar.ENDERECO_CLIENTE, String.valueOf(idvendas));
+        enderecoVendasEditar = Uri.withAppendedPath(VendasContentProvidar.ENDERECO_VENDAS, String.valueOf(idvendas));
 
-        Cursor cursor = getContentResolver().query(enderecoVendasEditar, BDProduto.TODAS_COLUNAS, null, null, null);
+        Cursor cursor = getContentResolver().query(enderecoVendasEditar, BDVendas.TODAS_COLUNAS, null, null, null);
 
         if (!cursor.moveToNext()) {
-            Toast.makeText(this, "Erro: não foi possível ler os Clientes", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Erro: não foi possível ler as Vendas", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -111,7 +110,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
         vendas = Vendas.fromCursor(cursor);
 
 
-        et_nome_cliente.setText(String.valueOf(vendas.getDescricaoProdutoV()));
+        et_descr_venda.setText(String.valueOf(vendas.getDescricaoProdutoV()));
         editTextDate.setText(String.valueOf(vendas.getData()));
        
     }
@@ -131,15 +130,15 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
                 new String[]{BDCliente.CAMPO_NOMECLIENTE1},
                 new int[]{android.R.id.text1}
         );
-        spinnerCliente.setAdapter(AdaptadorClientes);
+        spinnerVenda.setAdapter(AdaptadorClientes);
     }
     private void refreshProfileSelected() {
         if (!produtoLoaded) return;
         if (produtoRefreshed) return;
 
-        for (int i = 0; i < spinnerCliente.getCount(); i++) {
-            if (spinnerCliente.getItemIdAtPosition(i) == vendas.getId()) {
-                spinnerCliente.setSelection(i);
+        for (int i = 0; i < spinnerVenda.getCount(); i++) {
+            if (spinnerVenda.getItemIdAtPosition(i) == vendas.getId()) {
+                spinnerVenda.setSelection(i);
                 break;
             }
         }
@@ -153,10 +152,10 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     public void Alterarvendas(View v) {//Inserir e as suas validaçes
 
 
-        String nomecliente = et_nome_cliente.getText().toString();
+        String nomecliente = et_descr_venda.getText().toString();
         if (nomecliente.trim().length() == 0) {//nome cliente
-            et_nome_cliente.setError(getString(R.string.erro_ID_prodotosvendidos));
-            et_nome_cliente.requestFocus();
+            et_descr_venda.setError(getString(R.string.erro_ID_prodotosvendidos));
+            et_descr_venda.requestFocus();
             return;
         }
         /////////////////////////////////////////
@@ -175,11 +174,11 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
             return;
 
         }
-        Toast.makeText(this, "{" + getString(R.string.GuardadoSucesso) + "}", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.GuardadoSucesso) , Toast.LENGTH_SHORT).show();
         finish();
 
 
-        long idcliente = spinnerCliente.getSelectedItemId();
+        long idcliente = spinnerVenda.getSelectedItemId();
 
 
         vendas.setCliente(idcliente);
@@ -195,7 +194,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
             finish();
         } catch (Exception e) {
             Snackbar.make(
-                    et_nome_cliente,
+                    et_descr_venda,
                     getString(R.string.erro_guardar_produto),
                     Snackbar.LENGTH_LONG)
                     .show();
@@ -209,7 +208,7 @@ public class AlterarVendas extends AppCompatActivity implements LoaderManager.Lo
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        androidx.loader.content.CursorLoader cursorLoader=new androidx.loader.content.CursorLoader(this,VendasContentProvidar.ENDERECO_PRODUTOS, BDProduto.TODAS_COLUNAS, null,null,BDProduto.CAMPO_PRODUTOESTOQUE)
+        androidx.loader.content.CursorLoader cursorLoader=new androidx.loader.content.CursorLoader(this,VendasContentProvidar.ENDERECO_CLIENTE, BDCliente.TODAS_COLUNAS, null,null,BDCliente.CAMPO_NOMECLIENTE1)
                 ;
         return cursorLoader ;    }
 
